@@ -1,0 +1,817 @@
+#################################################################################################################################
+Human player vs Fifteen Player
+#################################################################################################################################
+
+Welcome to Bulldog! What is your choice for player 1?
+1. Random
+2. Human
+3. Fifteen
+4. Unique
+2
+You have chosen Human for player 1.
+
+What is your choice for player 2?
+3
+You have chosen IScoreFifteen for player 2.
+################################################################
+Game Start!
+Turn 1: Human
+Roll? (1 - yes / 2 - no) 1
+You rolled a 5.
+Turn score: 5
+Roll? (1 - yes / 2 - no) 2
+Human has 5 points at the end of the turn.
+Player IScoreFifteen rolled 2 and has a score of 2 for the turn.
+Player IScoreFifteen rolled 2 and has a score of 4 for the turn.
+Player IScoreFifteen rolled 2 and has a score of 6 for the turn.
+Player IScoreFifteen rolled 5 and has a score of 11 for the turn.
+Player IScoreFifteen rolled 1 and has a score of 12 for the turn.
+Player IScoreFifteen rolled 3 and has a score of 15 for the turn.
+
+******************************************
+IScoreFifteen currently has 15 points.
+Turn 2: Human
+Roll? (1 - yes / 2 - no) 1
+You rolled a 4.
+Turn score: 4
+Roll? (1 - yes / 2 - no) 1
+You rolled a 2.
+Turn score: 6
+Roll? (1 - yes / 2 - no) 1
+You rolled a 3.
+Turn score: 9
+Roll? (1 - yes / 2 - no) 2
+Human has 14 points at the end of the turn.
+Player IScoreFifteen rolled 5 and has a score of 5 for the turn.
+Player IScoreFifteen rolled 6
+IScoreFifteen rolled a six and got a zero for the turn.
+IScoreFifteen currently has 15 points.
+Turn 3: Human
+Roll? (1 - yes / 2 - no) 1
+You rolled a 1.
+Turn score: 1
+Roll? (1 - yes / 2 - no) 1
+You rolled a 5.
+Turn score: 6
+Roll? (1 - yes / 2 - no) 1
+You rolled a 2.
+Turn score: 8
+Roll? (1 - yes / 2 - no) 2
+Human has 22 points at the end of the turn.
+Player IScoreFifteen rolled 5 and has a score of 5 for the turn.
+Player IScoreFifteen rolled 4 and has a score of 9 for the turn.
+Player IScoreFifteen rolled 3 and has a score of 12 for the turn.
+Player IScoreFifteen rolled 6
+IScoreFifteen rolled a six and got a zero for the turn.
+IScoreFifteen currently has 15 points.
+Turn 4: Human
+Roll? (1 - yes / 2 - no) 1
+You rolled a 2.
+Turn score: 2
+Roll? (1 - yes / 2 - no) 1
+You rolled a 2.
+Turn score: 4
+Roll? (1 - yes / 2 - no) 1
+Human rolled a 6 and scored zero points for the turn.
+Human currently has a score of 22
+Player IScoreFifteen rolled 2 and has a score of 2 for the turn.
+Player IScoreFifteen rolled 2 and has a score of 4 for the turn.
+Player IScoreFifteen rolled 5 and has a score of 9 for the turn.
+Player IScoreFifteen rolled 4 and has a score of 13 for the turn.
+Player IScoreFifteen rolled 6
+IScoreFifteen rolled a six and got a zero for the turn.
+IScoreFifteen currently has 15 points.
+Turn 5: Human
+Roll? (1 - yes / 2 - no) 1
+You rolled a 4.
+Turn score: 4
+Roll? (1 - yes / 2 - no) 1
+You rolled a 2.
+Turn score: 6
+Roll? (1 - yes / 2 - no) 1
+You rolled a 4.
+Turn score: 10
+Roll? (1 - yes / 2 - no) 2
+Human has 32 points at the end of the turn.
+Player IScoreFifteen rolled 6
+IScoreFifteen rolled a six and got a zero for the turn.
+IScoreFifteen currently has 15 points.
+Turn 6: Human
+Roll? (1 - yes / 2 - no) 1
+Human rolled a 6 and scored zero points for the turn.
+Human currently has a score of 32
+Player IScoreFifteen rolled 6
+IScoreFifteen rolled a six and got a zero for the turn.
+IScoreFifteen currently has 15 points.
+Turn 7: Human
+Roll? (1 - yes / 2 - no)
+PS C:\Users\12078\OneDrive\Desktop\OOD\Bulldog>  c:; cd 'c:\Users\12078\OneDrive\Desktop\OOD\Bulldog'; & 'C:\Program Files\Java\jdk-17.0.4.1\bin\java.exe' '-XX:+ShowCodeDetailsInExceptionMessages' '-cp' 'C:\Users\12078\AppData\Roaming\Code\User\workspaceStorage\5a49cba083a97d4b7332ff80852024d7\redhat.java\jdt_ws\Bulldog_493dadde\bin' 'BulldogGame' 
+Welcome to Bulldog! What is your choice for player 1?
+1. Random
+2. Human
+3. Fifteen
+4. Unique
+2
+You have chosen Human for player 1.
+
+What is your choice for player 2?
+3
+You have chosen IScoreFifteen for player 2.
+################################################################
+Game Start!
+Turn 1: Human
+Roll? (1 - yes / 2 - no) 1
+Human rolled a 6 and scored zero points for the turn.
+Human currently has a score of 0
+**********************************************************
+
+Player IScoreFifteen rolled 3 and has a score of 3 for the turn.
+Player IScoreFifteen rolled 5 and has a score of 8 for the turn.
+Player IScoreFifteen rolled 2 and has a score of 10 for the turn.
+Player IScoreFifteen rolled 2 and has a score of 12 for the turn.
+Player IScoreFifteen rolled 5 and has a score of 17 for the turn.
+
+******************************************
+IScoreFifteen currently has 17 points.
+**********************************************************
+
+Turn 2: Human
+Roll? (1 - yes / 2 - no) 1
+You rolled a 2.
+Turn score: 2
+Roll? (1 - yes / 2 - no) 1
+You rolled a 1.
+Turn score: 3
+Roll? (1 - yes / 2 - no) 1
+You rolled a 2.
+Turn score: 5
+Roll? (1 - yes / 2 - no) 2
+Human has 5 points at the end of the turn.
+**********************************************************
+
+Player IScoreFifteen rolled 1 and has a score of 1 for the turn.
+Player IScoreFifteen rolled 2 and has a score of 3 for the turn.
+Player IScoreFifteen rolled 6
+IScoreFifteen rolled a six and got a zero for the turn.
+IScoreFifteen currently has 17 points.
+**********************************************************
+
+Turn 3: Human
+Roll? (1 - yes / 2 - no) 1
+You rolled a 3.
+Turn score: 3
+Roll? (1 - yes / 2 - no) 1
+Human rolled a 6 and scored zero points for the turn.
+Human currently has a score of 5
+**********************************************************
+
+Player IScoreFifteen rolled 5 and has a score of 5 for the turn.
+Player IScoreFifteen rolled 3 and has a score of 8 for the turn.
+Player IScoreFifteen rolled 5 and has a score of 13 for the turn.
+Player IScoreFifteen rolled 2 and has a score of 15 for the turn.
+
+******************************************
+IScoreFifteen currently has 32 points.
+**********************************************************
+
+Turn 4: Human
+Roll? (1 - yes / 2 - no) 1
+You rolled a 1.
+Turn score: 1
+Roll? (1 - yes / 2 - no) 1
+You rolled a 1.
+Turn score: 2
+Roll? (1 - yes / 2 - no) 1
+You rolled a 2.
+Turn score: 4
+Roll? (1 - yes / 2 - no) 1
+You rolled a 1.
+Turn score: 5
+Roll? (1 - yes / 2 - no) 1
+You rolled a 4.
+Turn score: 9
+Roll? (1 - yes / 2 - no) 2
+Human has 14 points at the end of the turn.
+**********************************************************
+
+Player IScoreFifteen rolled 2 and has a score of 2 for the turn.
+Player IScoreFifteen rolled 2 and has a score of 4 for the turn.
+Player IScoreFifteen rolled 4 and has a score of 8 for the turn.
+Player IScoreFifteen rolled 5 and has a score of 13 for the turn.
+Player IScoreFifteen rolled 1 and has a score of 14 for the turn.
+Player IScoreFifteen rolled 6
+IScoreFifteen rolled a six and got a zero for the turn.
+IScoreFifteen currently has 32 points.
+**********************************************************
+
+Turn 5: Human
+Roll? (1 - yes / 2 - no) 1
+You rolled a 1.
+Turn score: 1
+Roll? (1 - yes / 2 - no) 1
+You rolled a 2.
+Turn score: 3
+Roll? (1 - yes / 2 - no) 1
+You rolled a 5.
+Turn score: 8
+Roll? (1 - yes / 2 - no) 1
+You rolled a 3.
+Turn score: 11
+Roll? (1 - yes / 2 - no) 2
+Human has 25 points at the end of the turn.
+**********************************************************
+
+Player IScoreFifteen rolled 5 and has a score of 5 for the turn.
+Player IScoreFifteen rolled 2 and has a score of 7 for the turn.
+Player IScoreFifteen rolled 4 and has a score of 11 for the turn.
+Player IScoreFifteen rolled 4 and has a score of 15 for the turn.
+
+******************************************
+IScoreFifteen currently has 47 points.
+**********************************************************
+
+Turn 6: Human
+Roll? (1 - yes / 2 - no) 1
+Human rolled a 6 and scored zero points for the turn.
+Human currently has a score of 25
+**********************************************************
+
+Player IScoreFifteen rolled 3 and has a score of 3 for the turn.
+Player IScoreFifteen rolled 5 and has a score of 8 for the turn.
+Player IScoreFifteen rolled 4 and has a score of 12 for the turn.
+Player IScoreFifteen rolled 4 and has a score of 16 for the turn.
+
+******************************************
+IScoreFifteen currently has 63 points.
+**********************************************************
+
+Turn 7: Human
+Roll? (1 - yes / 2 - no) 1
+You rolled a 5.
+Turn score: 5
+Roll? (1 - yes / 2 - no) 1
+Human rolled a 6 and scored zero points for the turn.
+Human currently has a score of 25
+**********************************************************
+
+Player IScoreFifteen rolled 6
+IScoreFifteen rolled a six and got a zero for the turn.
+IScoreFifteen currently has 63 points.
+**********************************************************
+
+Turn 8: Human
+Roll? (1 - yes / 2 - no) 1
+Human rolled a 6 and scored zero points for the turn.
+Human currently has a score of 25
+**********************************************************
+
+Player IScoreFifteen rolled 1 and has a score of 1 for the turn.
+Player IScoreFifteen rolled 3 and has a score of 4 for the turn.
+Player IScoreFifteen rolled 1 and has a score of 5 for the turn.
+Player IScoreFifteen rolled 4 and has a score of 9 for the turn.
+Player IScoreFifteen rolled 1 and has a score of 10 for the turn.
+Player IScoreFifteen rolled 6
+IScoreFifteen rolled a six and got a zero for the turn.
+IScoreFifteen currently has 63 points.
+**********************************************************
+
+Turn 9: Human
+Roll? (1 - yes / 2 - no) 1
+You rolled a 3.
+Turn score: 3
+Roll? (1 - yes / 2 - no) 1
+You rolled a 5.
+Turn score: 8
+Roll? (1 - yes / 2 - no) 1
+You rolled a 1.
+Turn score: 9
+Roll? (1 - yes / 2 - no) 2
+Human has 34 points at the end of the turn.
+**********************************************************
+
+Player IScoreFifteen rolled 5 and has a score of 5 for the turn.
+Player IScoreFifteen rolled 2 and has a score of 7 for the turn.
+Player IScoreFifteen rolled 4 and has a score of 11 for the turn.
+Player IScoreFifteen rolled 6
+IScoreFifteen rolled a six and got a zero for the turn.
+IScoreFifteen currently has 63 points.
+**********************************************************
+
+Turn 10: Human
+Roll? (1 - yes / 2 - no) 1
+You rolled a 4.
+Turn score: 4
+Roll? (1 - yes / 2 - no) 1
+You rolled a 3.
+Turn score: 7
+Roll? (1 - yes / 2 - no) 1
+You rolled a 5.
+Turn score: 12
+Roll? (1 - yes / 2 - no) 2
+Human has 46 points at the end of the turn.
+**********************************************************
+
+Player IScoreFifteen rolled 2 and has a score of 2 for the turn.
+Player IScoreFifteen rolled 2 and has a score of 4 for the turn.
+Player IScoreFifteen rolled 5 and has a score of 9 for the turn.
+Player IScoreFifteen rolled 5 and has a score of 14 for the turn.
+Player IScoreFifteen rolled 2 and has a score of 16 for the turn.
+
+******************************************
+IScoreFifteen currently has 79 points.
+**********************************************************
+
+Turn 11: Human
+Roll? (1 - yes / 2 - no) 1
+You rolled a 3.
+Turn score: 3
+Roll? (1 - yes / 2 - no) 1
+You rolled a 1.
+Turn score: 4
+Roll? (1 - yes / 2 - no) 1
+You rolled a 4.
+Turn score: 8
+Roll? (1 - yes / 2 - no) 1
+You rolled a 5.
+Turn score: 13
+Roll? (1 - yes / 2 - no) 2
+Human has 59 points at the end of the turn.
+**********************************************************
+
+Player IScoreFifteen rolled 3 and has a score of 3 for the turn.
+Player IScoreFifteen rolled 5 and has a score of 8 for the turn.
+Player IScoreFifteen rolled 3 and has a score of 11 for the turn.
+Player IScoreFifteen rolled 1 and has a score of 12 for the turn.
+Player IScoreFifteen rolled 1 and has a score of 13 for the turn.
+Player IScoreFifteen rolled 6
+IScoreFifteen rolled a six and got a zero for the turn.
+IScoreFifteen currently has 79 points.
+**********************************************************
+
+Turn 12: Human
+Roll? (1 - yes / 2 - no) 1
+You rolled a 2.
+Turn score: 2
+Roll? (1 - yes / 2 - no) 1
+You rolled a 3.
+Turn score: 5
+Roll? (1 - yes / 2 - no) 1
+You rolled a 1.
+Turn score: 6
+Roll? (1 - yes / 2 - no) 1
+You rolled a 4.
+Turn score: 10
+Roll? (1 - yes / 2 - no) 2
+Human has 69 points at the end of the turn.
+**********************************************************
+
+Player IScoreFifteen rolled 6
+IScoreFifteen rolled a six and got a zero for the turn.
+IScoreFifteen currently has 79 points.
+**********************************************************
+
+Turn 13: Human
+Roll? (1 - yes / 2 - no) 1
+You rolled a 1.
+Turn score: 1
+Roll? (1 - yes / 2 - no) 1
+Human rolled a 6 and scored zero points for the turn.
+Human currently has a score of 69
+**********************************************************
+
+Player IScoreFifteen rolled 3 and has a score of 3 for the turn.
+Player IScoreFifteen rolled 6
+IScoreFifteen rolled a six and got a zero for the turn.
+IScoreFifteen currently has 79 points.
+**********************************************************
+
+Turn 14: Human
+Roll? (1 - yes / 2 - no) 1
+You rolled a 5.
+Turn score: 5
+Roll? (1 - yes / 2 - no) 2
+Human has 74 points at the end of the turn.
+**********************************************************
+
+Player IScoreFifteen rolled 1 and has a score of 1 for the turn.
+Player IScoreFifteen rolled 3 and has a score of 4 for the turn.
+Player IScoreFifteen rolled 2 and has a score of 6 for the turn.
+Player IScoreFifteen rolled 6
+IScoreFifteen rolled a six and got a zero for the turn.
+IScoreFifteen currently has 79 points.
+**********************************************************
+
+Turn 15: Human
+Roll? (1 - yes / 2 - no) 1
+You rolled a 2.
+Turn score: 2
+Roll? (1 - yes / 2 - no) 1
+Human rolled a 6 and scored zero points for the turn.
+Human currently has a score of 74
+**********************************************************
+
+Player IScoreFifteen rolled 3 and has a score of 3 for the turn.
+Player IScoreFifteen rolled 6
+IScoreFifteen rolled a six and got a zero for the turn.
+IScoreFifteen currently has 79 points.
+**********************************************************
+
+Turn 16: Human
+Roll? (1 - yes / 2 - no) 1
+You rolled a 3.
+Turn score: 3
+Roll? (1 - yes / 2 - no) 1
+You rolled a 2.
+Turn score: 5
+Roll? (1 - yes / 2 - no) 1
+You rolled a 1.
+Turn score: 6
+Roll? (1 - yes / 2 - no) 2
+Human has 80 points at the end of the turn.
+**********************************************************
+
+Player IScoreFifteen rolled 2 and has a score of 2 for the turn.
+Player IScoreFifteen rolled 3 and has a score of 5 for the turn.
+Player IScoreFifteen rolled 1 and has a score of 6 for the turn.
+Player IScoreFifteen rolled 1 and has a score of 7 for the turn.
+Player IScoreFifteen rolled 1 and has a score of 8 for the turn.
+Player IScoreFifteen rolled 1 and has a score of 9 for the turn.
+Player IScoreFifteen rolled 2 and has a score of 11 for the turn.
+Player IScoreFifteen rolled 3 and has a score of 14 for the turn.
+Player IScoreFifteen rolled 3 and has a score of 17 for the turn.
+
+******************************************
+IScoreFifteen currently has 96 points.
+**********************************************************
+
+Turn 17: Human
+Roll? (1 - yes / 2 - no) 1
+You rolled a 4.
+Turn score: 4
+Roll? (1 - yes / 2 - no) 1
+You rolled a 3.
+Turn score: 7
+Roll? (1 - yes / 2 - no) 2
+Human has 87 points at the end of the turn.
+**********************************************************
+
+Player IScoreFifteen rolled 3 and has a score of 3 for the turn.
+Player IScoreFifteen rolled 1 and has a score of 4 for the turn.
+Player IScoreFifteen rolled 2 and has a score of 6 for the turn.
+Player IScoreFifteen rolled 3 and has a score of 9 for the turn.
+Player IScoreFifteen rolled 3 and has a score of 12 for the turn.
+Player IScoreFifteen rolled 5 and has a score of 17 for the turn.
+
+******************************************
+IScoreFifteen currently has 113 points.
+**********************************************************
+
+Player 2 wins!
+Player 1 final score: 87
+Player 2 final score: 113
+
+
+
+
+#######################################################################################################################
+
+Random Player versus Unique Player
+#######################################################################################################################
+Welcome to Bulldog! What is your choice for player 1?
+1. Random
+2. Human
+3. Fifteen
+4. Unique
+1
+You have chosen Random for player 1.
+
+What is your choice for player 2?
+4
+You have chosen UniquePlayer for player 2.
+################################################################
+Game Start!
+Turn 1: Random
+Random rolled a 2 for a turn score of 2.
+Random scored 2 points this round.
+Random has 2 total points.
+**********************************************************
+
+UniquePlayer rolled a 3.
+UniquePlayer has 3 points for the turn.
+UniquePlayer rolled a 1.
+UniquePlayer has 4 points for the turn.
+UniquePlayer rolled a 5.
+UniquePlayer has 9 points for the turn.
+UniquePlayer rolled a 4.
+UniquePlayer has 13 points for the turn.
+
+UniquePlayer scored 13 points this turn.
+UniquePlayer has 13 total points.
+**********************************************************
+
+Turn 2: Random
+Random rolled a 5 for a turn score of 5.
+Random rolled a 1 for a turn score of 6.
+Random rolled a 1 for a turn score of 7.
+Random scored 7 points this round.
+Random has 9 total points.
+**********************************************************
+
+UniquePlayer rolled a 2.
+UniquePlayer has 2 points for the turn.
+UniquePlayer rolled a 4.
+UniquePlayer has 6 points for the turn.
+UniquePlayer rolled a 4.
+UniquePlayer has 10 points for the turn.
+UniquePlayer rolled a 3.
+UniquePlayer has 13 points for the turn.
+
+UniquePlayer scored 13 points this turn.
+UniquePlayer has 26 total points.
+**********************************************************
+
+Turn 3: Random
+Random rolled a 4 for a turn score of 4.
+Random rolled a 3 for a turn score of 7.
+Random scored 7 points this round.
+Random has 16 total points.
+**********************************************************
+
+UniquePlayer rolled a 6.
+UniquePlayer rolled a 6 and lost all points this turn.
+**********************************************************
+
+Turn 4: Random
+Random rolled a 5 for a turn score of 5.
+Random rolled a 5 for a turn score of 10.
+Random scored 10 points this round.
+Random has 26 total points.
+**********************************************************
+
+UniquePlayer rolled a 1.
+UniquePlayer has 1 points for the turn.
+UniquePlayer rolled a 6.
+UniquePlayer rolled a 6 and lost all points this turn.
+**********************************************************
+
+Turn 5: Random
+Random rolled a 3 for a turn score of 3.
+Random rolled a 4 for a turn score of 7.
+Random scored 7 points this round.
+Random has 33 total points.
+**********************************************************
+
+UniquePlayer rolled a 6.
+UniquePlayer rolled a 6 and lost all points this turn.
+**********************************************************
+
+Turn 6: Random
+Random scored 0 points this round.
+Random has 33 total points.
+**********************************************************
+
+UniquePlayer rolled a 5.
+UniquePlayer has 5 points for the turn.
+UniquePlayer rolled a 5.
+UniquePlayer has 10 points for the turn.
+UniquePlayer rolled a 6.
+UniquePlayer rolled a 6 and lost all points this turn.
+**********************************************************
+
+Turn 7: Random
+Random rolled a 1 for a turn score of 1.
+Random scored 1 points this round.
+Random has 34 total points.
+**********************************************************
+
+UniquePlayer rolled a 2.
+UniquePlayer has 2 points for the turn.
+UniquePlayer rolled a 5.
+UniquePlayer has 7 points for the turn.
+UniquePlayer rolled a 4.
+UniquePlayer has 11 points for the turn.
+UniquePlayer rolled a 3.
+UniquePlayer has 14 points for the turn.
+
+UniquePlayer scored 14 points this turn.
+UniquePlayer has 40 total points.
+**********************************************************
+
+Turn 8: Random
+Random scored 0 points this round.
+Random has 34 total points.
+**********************************************************
+
+UniquePlayer rolled a 4.
+UniquePlayer has 4 points for the turn.
+UniquePlayer rolled a 6.
+UniquePlayer rolled a 6 and lost all points this turn.
+**********************************************************
+
+Turn 9: Random
+Random scored 0 points this round.
+Random has 34 total points.
+**********************************************************
+
+UniquePlayer rolled a 4.
+UniquePlayer has 4 points for the turn.
+UniquePlayer rolled a 2.
+UniquePlayer has 6 points for the turn.
+UniquePlayer rolled a 2.
+UniquePlayer has 8 points for the turn.
+UniquePlayer rolled a 2.
+UniquePlayer has 10 points for the turn.
+
+UniquePlayer scored 10 points this turn.
+UniquePlayer has 50 total points.
+**********************************************************
+
+Turn 10: Random
+Random scored 0 points this round.
+Random has 34 total points.
+**********************************************************
+
+UniquePlayer rolled a 6.
+UniquePlayer rolled a 6 and lost all points this turn.
+**********************************************************
+
+Turn 11: Random
+Random rolled a 1 for a turn score of 1.
+Random rolled a 6 and scored 0 points for the turn.
+Random currently has 34 points.
+**********************************************************
+
+UniquePlayer rolled a 2.
+UniquePlayer has 2 points for the turn.
+UniquePlayer rolled a 5.
+UniquePlayer has 7 points for the turn.
+UniquePlayer rolled a 3.
+UniquePlayer has 10 points for the turn.
+UniquePlayer rolled a 6.
+UniquePlayer rolled a 6 and lost all points this turn.
+**********************************************************
+
+Turn 12: Random
+Random scored 0 points this round.
+Random has 34 total points.
+**********************************************************
+
+UniquePlayer rolled a 2.
+UniquePlayer has 2 points for the turn.
+UniquePlayer rolled a 1.
+UniquePlayer has 3 points for the turn.
+UniquePlayer rolled a 5.
+UniquePlayer has 8 points for the turn.
+UniquePlayer rolled a 1.
+UniquePlayer has 9 points for the turn.
+
+UniquePlayer scored 9 points this turn.
+UniquePlayer has 59 total points.
+**********************************************************
+
+Turn 13: Random
+Random rolled a 3 for a turn score of 3.
+Random rolled a 1 for a turn score of 4.
+Random scored 4 points this round.
+Random has 38 total points.
+**********************************************************
+
+UniquePlayer rolled a 4.
+UniquePlayer has 4 points for the turn.
+UniquePlayer rolled a 5.
+UniquePlayer has 9 points for the turn.
+UniquePlayer rolled a 4.
+UniquePlayer has 13 points for the turn.
+UniquePlayer rolled a 2.
+UniquePlayer has 15 points for the turn.
+
+UniquePlayer scored 15 points this turn.
+UniquePlayer has 74 total points.
+**********************************************************
+
+Turn 14: Random
+Random scored 0 points this round.
+Random has 38 total points.
+**********************************************************
+
+UniquePlayer rolled a 1.
+UniquePlayer has 1 points for the turn.
+UniquePlayer rolled a 6.
+UniquePlayer rolled a 6 and lost all points this turn.
+**********************************************************
+
+Turn 15: Random
+Random rolled a 6 and scored 0 points for the turn.
+Random currently has 38 points.
+**********************************************************
+
+UniquePlayer rolled a 3.
+UniquePlayer has 3 points for the turn.
+UniquePlayer rolled a 6.
+UniquePlayer rolled a 6 and lost all points this turn.
+**********************************************************
+
+Turn 16: Random
+Random rolled a 2 for a turn score of 2.
+Random rolled a 3 for a turn score of 5.
+Random scored 5 points this round.
+Random has 43 total points.
+**********************************************************
+
+UniquePlayer rolled a 3.
+UniquePlayer has 3 points for the turn.
+UniquePlayer rolled a 6.
+UniquePlayer rolled a 6 and lost all points this turn.
+**********************************************************
+
+Turn 17: Random
+Random scored 0 points this round.
+Random has 43 total points.
+**********************************************************
+
+UniquePlayer rolled a 2.
+UniquePlayer has 2 points for the turn.
+UniquePlayer rolled a 4.
+UniquePlayer has 6 points for the turn.
+UniquePlayer rolled a 5.
+UniquePlayer has 11 points for the turn.
+UniquePlayer rolled a 2.
+UniquePlayer has 13 points for the turn.
+
+UniquePlayer scored 13 points this turn.
+UniquePlayer has 87 total points.
+**********************************************************
+
+Turn 18: Random
+Random scored 0 points this round.
+Random has 43 total points.
+**********************************************************
+
+UniquePlayer rolled a 2.
+UniquePlayer has 2 points for the turn.
+UniquePlayer rolled a 6.
+UniquePlayer rolled a 6 and lost all points this turn.
+**********************************************************
+
+Turn 19: Random
+Random scored 0 points this round.
+Random has 43 total points.
+**********************************************************
+
+UniquePlayer rolled a 6.
+UniquePlayer rolled a 6 and lost all points this turn.
+**********************************************************
+
+Turn 20: Random
+Random scored 0 points this round.
+Random has 43 total points.
+**********************************************************
+
+UniquePlayer rolled a 3.
+UniquePlayer has 3 points for the turn.
+UniquePlayer rolled a 3.
+UniquePlayer has 6 points for the turn.
+UniquePlayer rolled a 6.
+UniquePlayer rolled a 6 and lost all points this turn.
+**********************************************************
+
+Turn 21: Random
+Random rolled a 5 for a turn score of 5.
+Random scored 5 points this round.
+Random has 48 total points.
+**********************************************************
+
+UniquePlayer rolled a 3.
+UniquePlayer has 3 points for the turn.
+UniquePlayer rolled a 2.
+UniquePlayer has 5 points for the turn.
+UniquePlayer rolled a 4.
+UniquePlayer has 9 points for the turn.
+UniquePlayer rolled a 4.
+UniquePlayer has 13 points for the turn.
+
+UniquePlayer scored 13 points this turn.
+UniquePlayer has 100 total points.
+**********************************************************
+
+Turn 22: Random
+Random scored 0 points this round.
+Random has 48 total points.
+**********************************************************
+
+UniquePlayer rolled a 5.
+UniquePlayer has 5 points for the turn.
+UniquePlayer rolled a 5.
+UniquePlayer has 10 points for the turn.
+UniquePlayer rolled a 2.
+UniquePlayer has 12 points for the turn.
+UniquePlayer rolled a 2.
+UniquePlayer has 14 points for the turn.
+
+UniquePlayer scored 14 points this turn.
+UniquePlayer has 114 total points.
+**********************************************************
+
+Player 2 wins!
+Player 1 final score: 48
+Player 2 final score: 114
