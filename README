@@ -14,7 +14,7 @@ Bulldog is a turn-based dice game where players compete to reach a score of 104 
 ## Implementation
 The game was implemented in two phases:
 1. **Human Implementation**: The initial version of the game was written by a human developer.
-2. **AI Implementation**: The game was then re-implemented by an AI to compare the differences between the two versions.
+2. **AI Implementation**: The game was then re-implemented by an AI (GitHub Copilot with GPT-4o) to compare the differences between the two versions.
 
 ## How to Play
 1. Start the game and select two player implementations
@@ -22,3 +22,5 @@ The game was implemented in two phases:
 3. Win or lose, it's fun for the whole family!
 
 Enjoy playing Bulldog!
+
+*Note: this github readme was partially written by AI*
