@@ -14,6 +14,7 @@ public abstract class Player {
 	
 	private int score;		// The score earned by this Player during the game
 	
+
 	/********************************************************/
 	/* Constructor: Player                                  */
 	/* Purpose: Create a new Player object                  */
@@ -72,5 +73,18 @@ public abstract class Player {
 	/*       which will be zero if a six was rolled         */
 	/********************************************************/
 	public abstract int play();
-	
+
+	/********************************************************/
+	/* Method:  informGame                                  */
+	/* Purpose: inform the game of the player's roll and    */
+	/*          score for the turn                          */
+	/* Parameters:                                          */
+	/*   int roll - the value of the roll                   */
+	/*   int turnScore - the score for the turn             */
+	/* Returns:                                             */
+	/*   none                                               */
+	/********************************************************/
+	public void informGame(int roll, int turnScore) {
+		// This method will be overridden in the BulldogGame class
+	}
 }

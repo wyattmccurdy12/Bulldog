@@ -44,26 +44,21 @@ public class RandomPlayer extends Player {
     /*       which will be zero if a six was rolled         */
     /********************************************************/
     public int play() {
-        int totalScore = 0;
+        int turnScore = 0;
         boolean continueRolling = true;
 
         while (continueRolling) {
             int roll = (int) (Math.random() * 6 + 1);
-            System.out.print("   Player " + getName() + " rolled " + roll);
             if (roll == 6) {
-                totalScore = 0;
-                System.out.println(" and scored 0 for the turn.");
+                turnScore = 0;
                 break;
             } else {
-                totalScore += roll;
-                System.out.println(" and now has a total score of " + totalScore + " for the turn.");
+                turnScore += roll;
                 continueRolling = Math.random() < 0.5; // 50/50 chance to continue rolling
-                if (!continueRolling) {
-                    System.out.println("   Player " + getName() + " chose to end the turn with a score of " + totalScore);
-                }
             }
         }
 
-        return totalScore;
+        setScore(getScore() + turnScore);
+        return turnScore;
     }
 }

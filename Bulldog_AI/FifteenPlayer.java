@@ -44,25 +44,19 @@ public class FifteenPlayer extends Player {
     /*       which will be zero if a six was rolled         */
     /********************************************************/
     public int play() {
-        int totalScore = 0;
+        int turnScore = 0;
 
-        while (totalScore < 15) {
+        while (turnScore < 15) {
             int roll = (int) (Math.random() * 6 + 1);
-            System.out.print("   Player " + getName() + " rolled " + roll);
             if (roll == 6) {
-                totalScore = 0;
-                System.out.println(" and scored 0 for the turn.");
+                turnScore = 0;
                 break;
             } else {
-                totalScore += roll;
-                System.out.println(" and now has a total score of " + totalScore + " for the turn.");
+                turnScore += roll;
             }
         }
 
-        if (totalScore >= 15) {
-            System.out.println("   Player " + getName() + " reached or exceeded 15 points and ends the turn with a score of " + totalScore);
-        }
-
-        return totalScore;
+        setScore(getScore() + turnScore);
+        return turnScore;
     }
 }
