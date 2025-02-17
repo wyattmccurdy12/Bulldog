@@ -52,7 +52,12 @@ public class HumanPlayer extends Player {
     /********************************************************/
     public int play() {
         int totalScore = 0;
+        System.out.println("Would you like to roll? (y/n)?");
+
         boolean continueRolling = true;
+
+        String input = scanner.nextLine().trim().toLowerCase();
+        continueRolling = input.equals("y");
 
         while (continueRolling) {
             int roll = (int) (Math.random() * 6 + 1);
@@ -65,7 +70,7 @@ public class HumanPlayer extends Player {
                 totalScore += roll;
                 System.out.println(" and now has a total score of " + totalScore + " for the turn.");
                 System.out.print("   Do you want to roll again? (y/n): ");
-                String input = scanner.nextLine().trim().toLowerCase();
+                input = scanner.nextLine().trim().toLowerCase();
                 continueRolling = input.equals("y");
                 if (!continueRolling) {
                     System.out.println("   Player " + getName() + " chose to end the turn with a score of " + totalScore);
