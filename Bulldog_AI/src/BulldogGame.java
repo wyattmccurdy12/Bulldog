@@ -13,79 +13,141 @@ package src;
 
 import java.util.Scanner;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
-public class BulldogGame {
+/**
+ * BulldogGame class manages the game between two to five players until one reaches 104 points.
+ * It provides a simple UI for user interaction.
+ */
+public class BulldogGame extends JFrame {
 
     private static final int WINNING_SCORE = 104;
     private Scanner scanner;
+    private JTextArea textArea;
+    private JButton submitButton;
+    private int numPlayers;
+    private Player[] players;
+    private HashMap<String, Player> selectedPlayers;
+    private int[] scores;
+    private boolean gameWon;
 
+    /**
+     * Constructor initializes the game and sets up the UI.
+     */
     public BulldogGame() {
         scanner = new Scanner(System.in);
+        selectedPlayers = new HashMap<>();
+        setupUI();
     }
 
+    /**
+     * Sets up the user interface for the game.
+     */
+    private void setupUI() {
+        setTitle("Bulldog Game");
+        setSize(400, 300);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+
+        textArea = new JTextArea("Welcome to the bulldog dice game!\nPlease use the checkboxes above\nto indicate the players you wish to participate");
+        textArea.setEditable(false);
+        add(new JScrollPane(textArea), BorderLayout.CENTER);
+
+        JPanel inputPanel = new JPanel();
+        inputPanel.setLayout(new BorderLayout());
+
+        submitButton = new JButton("Submit");
+        inputPanel.add(submitButton, BorderLayout.EAST);
+        add(inputPanel, BorderLayout.SOUTH);
+
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        // Add checkboxes for player selection
+        JPanel playerSelectionPanel = new JPanel();
+        playerSelectionPanel.setLayout(new GridLayout(6, 1));
+        JCheckBox wimpPlayerCheckBox = new JCheckBox("WimpPlayer");
+        JCheckBox randomPlayerCheckBox = new JCheckBox("RandomPlayer");
+        JCheckBox fifteenPlayerCheckBox = new JCheckBox("FifteenPlayer");
+        JCheckBox humanPlayerCheckBox = new JCheckBox("HumanPlayer");
+        JCheckBox uniquePlayerGPTCheckBox = new JCheckBox("UniquePlayerGPT");
+        JCheckBox uniquePlayerHumanCheckBox = new JCheckBox("UniquePlayerHuman");
+
+        // Add action listeners to checkboxes
+        wimpPlayerCheckBox.addActionListener(e -> togglePlayerSelection("WimpPlayer", new WimpPlayer(), wimpPlayerCheckBox.isSelected()));
+        randomPlayerCheckBox.addActionListener(e -> togglePlayerSelection("RandomPlayer", new RandomPlayer(), randomPlayerCheckBox.isSelected()));
+        fifteenPlayerCheckBox.addActionListener(e -> togglePlayerSelection("FifteenPlayer", new FifteenPlayer(), fifteenPlayerCheckBox.isSelected()));
+        humanPlayerCheckBox.addActionListener(e -> togglePlayerSelection("HumanPlayer", new HumanPlayer(), humanPlayerCheckBox.isSelected()));
+        uniquePlayerGPTCheckBox.addActionListener(e -> togglePlayerSelection("UniquePlayerGPT", new UniquePlayerGPT(), uniquePlayerGPTCheckBox.isSelected()));
+        uniquePlayerHumanCheckBox.addActionListener(e -> togglePlayerSelection("UniquePlayerHuman", new UniquePlayerHuman(), uniquePlayerHumanCheckBox.isSelected()));
+
+
+        playerSelectionPanel.add(wimpPlayerCheckBox);
+        playerSelectionPanel.add(randomPlayerCheckBox);
+        playerSelectionPanel.add(fifteenPlayerCheckBox);
+        playerSelectionPanel.add(humanPlayerCheckBox);
+        playerSelectionPanel.add(uniquePlayerGPTCheckBox);
+        playerSelectionPanel.add(uniquePlayerHumanCheckBox);
+
+        add(playerSelectionPanel, BorderLayout.NORTH);
+
+        setVisible(true);
+    }
+
+    /**
+     * Starts the game by initializing players and their scores, and managing the game loop.
+     */
     public void startGame() {
-        boolean playAgain = true;
+        players = new Player[numPlayers];
+        scores = new int[numPlayers];
 
-        while (playAgain) {
-            System.out.println("Welcome to Bulldog Game!");
-            int numPlayers = 0;
-            boolean validInput = false;
-
-            while (!validInput) {
-                System.out.print("Enter the number of players (2-5): ");
-                try {
-                    numPlayers = Integer.parseInt(scanner.nextLine().trim());
-                    if (numPlayers >= 2 && numPlayers <= 5) {
-                        validInput = true;
-                    } else {
-                        System.out.println("Invalid number of players. Please enter a number between 2 and 5.");
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid input. Please enter a valid number.");
-                }
-            }
-
-            Player[] players = new Player[numPlayers];
-            int[] scores = new int[numPlayers];
-
-            for (int i = 0; i < numPlayers; i++) {
-                players[i] = selectPlayer(i + 1);
-                scores[i] = 0;
-            }
-
-            boolean gameWon = false;
-            while (!gameWon) {
-                for (int i = 0; i < numPlayers; i++) {
-                    System.out.println("\nPlayer " + (i + 1) + " (" + players[i].getName() + ")'s turn:");
-                    scores[i] += players[i].play();
-                    System.out.println("Player " + (i + 1) + " (" + players[i].getName() + ")'s total score: " + scores[i]);
-
-                    if (scores[i] >= WINNING_SCORE) {
-                        System.out.println("\nPlayer " + (i + 1) + " (" + players[i].getName() + ") wins!");
-                        gameWon = true;
-                        break;
-                    }
-                }
-            }
-
-            System.out.print("\nWould you like to play again? (y/n): ");
-            playAgain = scanner.nextLine().trim().toLowerCase().equals("y");
+        // Initialize players and their scores
+        for (int i = 0; i < numPlayers; i++) {
+            players[i] = selectPlayer(i + 1);
+            scores[i] = 0;
         }
 
-        System.out.println("Thank you for playing Bulldog Game!");
+        gameWon = false;
+        // Game loop
+        while (!gameWon) {
+            for (int i = 0; i < numPlayers; i++) {
+                textArea.append("\nPlayer " + (i + 1) + " (" + players[i].getName() + ")'s turn:\n");
+                scores[i] += players[i].play();
+                textArea.append("Player " + (i + 1) + " (" + players[i].getName() + ")'s total score: " + scores[i] + "\n");
+
+                // Check if the current player has won
+                if (scores[i] >= WINNING_SCORE) {
+                    textArea.append("\nPlayer " + (i + 1) + " (" + players[i].getName() + ") wins!\n");
+                    gameWon = true;
+                    break;
+                }
+            }
+        }
+
+        textArea.append("\nThank you for playing Bulldog Game!\n");
     }
 
+    /**
+     * Prompts the user to select a player type for each player.
+     * @param playerNumber The player number.
+     * @return The selected Player object.
+     */
     private Player selectPlayer(int playerNumber) {
-        System.out.println("Select Player " + playerNumber + ":");
-        System.out.println("1. WimpPlayer");
-        System.out.println("2. RandomPlayer");
-        System.out.println("3. FifteenPlayer");
-        System.out.println("4. HumanPlayer");
-        System.out.println("5. UniquePlayerGPT");
-        System.out.println("6. UniquePlayerHuman");
-        System.out.print("Enter your choice: ");
+        textArea.append("Select Player " + playerNumber + ":\n");
+        textArea.append("1. WimpPlayer\n");
+        textArea.append("2. RandomPlayer\n");
+        textArea.append("3. FifteenPlayer\n");
+        textArea.append("4. HumanPlayer\n");
+        textArea.append("5. UniquePlayerGPT\n");
+        textArea.append("6. UniquePlayerHuman\n");
+        textArea.append("Enter your choice: ");
         int choice = Integer.parseInt(scanner.nextLine().trim());
 
         switch (choice) {
@@ -102,13 +164,25 @@ public class BulldogGame {
             case 6: 
                 return new UniquePlayerHuman();
             default:
-                System.out.println("Invalid choice. Defaulting to WimpPlayer.");
+                textArea.append("Invalid choice. Defaulting to WimpPlayer.\n");
                 return new WimpPlayer();
         }
     }
 
+    private void togglePlayerSelection(String playerType, Player player, boolean isSelected) {
+        System.out.println(player.getName() + " has been added to hashmap.");
+        if (isSelected) {
+            selectedPlayers.put(playerType, player);
+        } else {
+            selectedPlayers.remove(playerType);
+        }
+    }
+
+    /**
+     * Main method to start the BulldogGame.
+     * @param args Command line arguments.
+     */
     public static void main(String[] args) {
-        BulldogGame game = new BulldogGame();
-        game.startGame();
+        new BulldogGame();
     }
 }
