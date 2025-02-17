@@ -30,29 +30,43 @@ public class BulldogGame {
 
         while (playAgain) {
             System.out.println("Welcome to Bulldog Game!");
-            Player player1 = selectPlayer(1);
-            Player player2 = selectPlayer(2);
+            int numPlayers = 0;
+            boolean validInput = false;
 
-            int score1 = 0;
-            int score2 = 0;
-
-            while (score1 < WINNING_SCORE && score2 < WINNING_SCORE) {
-                System.out.println("\nPlayer 1 (" + player1.getName() + ")'s turn:");
-                score1 += player1.play();
-                System.out.println("Player 1 (" + player1.getName() + ")'s total score: " + score1);
-
-                if (score1 >= WINNING_SCORE) {
-                    System.out.println("\nPlayer 1 (" + player1.getName() + ") wins!");
-                    break;
+            while (!validInput) {
+                System.out.print("Enter the number of players (2-5): ");
+                try {
+                    numPlayers = Integer.parseInt(scanner.nextLine().trim());
+                    if (numPlayers >= 2 && numPlayers <= 5) {
+                        validInput = true;
+                    } else {
+                        System.out.println("Invalid number of players. Please enter a number between 2 and 5.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid input. Please enter a valid number.");
                 }
+            }
 
-                System.out.println("\nPlayer 2 (" + player2.getName() + ")'s turn:");
-                score2 += player2.play();
-                System.out.println("Player 2 (" + player2.getName() + ")'s total score: " + score2);
+            Player[] players = new Player[numPlayers];
+            int[] scores = new int[numPlayers];
 
-                if (score2 >= WINNING_SCORE) {
-                    System.out.println("\nPlayer 2 (" + player2.getName() + ") wins!");
-                    break;
+            for (int i = 0; i < numPlayers; i++) {
+                players[i] = selectPlayer(i + 1);
+                scores[i] = 0;
+            }
+
+            boolean gameWon = false;
+            while (!gameWon) {
+                for (int i = 0; i < numPlayers; i++) {
+                    System.out.println("\nPlayer " + (i + 1) + " (" + players[i].getName() + ")'s turn:");
+                    scores[i] += players[i].play();
+                    System.out.println("Player " + (i + 1) + " (" + players[i].getName() + ")'s total score: " + scores[i]);
+
+                    if (scores[i] >= WINNING_SCORE) {
+                        System.out.println("\nPlayer " + (i + 1) + " (" + players[i].getName() + ") wins!");
+                        gameWon = true;
+                        break;
+                    }
                 }
             }
 
