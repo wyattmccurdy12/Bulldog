@@ -1,4 +1,5 @@
 package src;
+
 /********************************************************/
 /* Wyatt McCurdy                                        */
 /* Login ID: wyatt.mccurdy@maine.edu                    */
@@ -33,6 +34,7 @@ public class BulldogGame extends JFrame {
     private HashMap<String, Player> selectedPlayers;
     private int[] scores;
     private boolean gameWon;
+    private JPanel centerPanel;
 
     /**
      * Constructor initializes the game and sets up the UI.
@@ -48,7 +50,7 @@ public class BulldogGame extends JFrame {
      */
     private void setupUI() {
         setTitle("Bulldog Game");
-        setSize(700, 400);
+        setSize(1000, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
@@ -64,6 +66,9 @@ public class BulldogGame extends JFrame {
         // Add checkboxes for player selection
         JPanel playerSelectionPanel = new JPanel();
         playerSelectionPanel.setLayout(new GridLayout(6, 1));
+        playerSelectionPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK)); // Add border
+
+        // Create checkboxes for each player type
         JCheckBox wimpPlayerCheckBox = new JCheckBox("WimpPlayer");
         JCheckBox randomPlayerCheckBox = new JCheckBox("RandomPlayer");
         JCheckBox fifteenPlayerCheckBox = new JCheckBox("FifteenPlayer");
@@ -79,7 +84,7 @@ public class BulldogGame extends JFrame {
         uniquePlayerGPTCheckBox.addActionListener(e -> togglePlayerSelection("UniquePlayerGPT", new UniquePlayerGPT(), uniquePlayerGPTCheckBox.isSelected()));
         uniquePlayerHumanCheckBox.addActionListener(e -> togglePlayerSelection("UniquePlayerHuman", new UniquePlayerHuman(), uniquePlayerHumanCheckBox.isSelected()));
 
-        // Add player checkboxes to the western panel
+        // Add player checkboxes to the player selection panel
         playerSelectionPanel.add(wimpPlayerCheckBox);
         playerSelectionPanel.add(randomPlayerCheckBox);
         playerSelectionPanel.add(fifteenPlayerCheckBox);
@@ -87,24 +92,32 @@ public class BulldogGame extends JFrame {
         playerSelectionPanel.add(uniquePlayerGPTCheckBox);
         playerSelectionPanel.add(uniquePlayerHumanCheckBox);
 
-        // Submit button.
+        // Submit button
         submitButton = new JButton("Submit");
         playerSelectionPanel.add(submitButton);
 
-        /* 
-         * This action listener will populate the blank center with 
-         * the names of the currently playing players, and 
-         * their current turn score, as well as total score. 
-         */
+        // Add the player selection panel to the west
+        add(playerSelectionPanel, BorderLayout.WEST);
+
+        // Center panel
+        centerPanel = new JPanel();
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+        centerPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK)); // Add border
+        add(centerPanel, BorderLayout.CENTER);
+
+        // Action listener for the submit button
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Players: " + selectedPlayers.toString());
-
+                centerPanel.removeAll();
+                for (String playerType : selectedPlayers.keySet()) {
+                    JLabel playerLabel = new JLabel("<html><u>" + playerType + "</u><br>Turn score: <br>Total score: </html>");
+                    centerPanel.add(playerLabel);
+                }
+                centerPanel.revalidate();
+                centerPanel.repaint();
             }
         });
-
-        add(playerSelectionPanel, BorderLayout.WEST);
 
         setVisible(true);
     }
@@ -177,6 +190,12 @@ public class BulldogGame extends JFrame {
         }
     }
 
+    /**
+     * Toggles the selection of a player type.
+     * @param playerType The type of player.
+     * @param player The player object.
+     * @param isSelected Whether the player is selected.
+     */
     private void togglePlayerSelection(String playerType, Player player, boolean isSelected) {
         System.out.println(player.getName() + " has been added to hashmap.");
         if (isSelected) {
