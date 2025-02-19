@@ -48,27 +48,18 @@ public class BulldogGame extends JFrame {
      */
     private void setupUI() {
         setTitle("Bulldog Game");
-        setSize(400, 300);
+        setSize(700, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
+        // Center text area
         textArea = new JTextArea("Welcome to the bulldog dice game!\nPlease use the checkboxes above\nto indicate the players you wish to participate");
         textArea.setEditable(false);
-        add(new JScrollPane(textArea), BorderLayout.CENTER);
+        add(new JScrollPane(textArea), BorderLayout.NORTH);
 
+        // Input panel 
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new BorderLayout());
-
-        submitButton = new JButton("Submit");
-        inputPanel.add(submitButton, BorderLayout.EAST);
-        add(inputPanel, BorderLayout.SOUTH);
-
-        submitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
 
         // Add checkboxes for player selection
         JPanel playerSelectionPanel = new JPanel();
@@ -88,7 +79,7 @@ public class BulldogGame extends JFrame {
         uniquePlayerGPTCheckBox.addActionListener(e -> togglePlayerSelection("UniquePlayerGPT", new UniquePlayerGPT(), uniquePlayerGPTCheckBox.isSelected()));
         uniquePlayerHumanCheckBox.addActionListener(e -> togglePlayerSelection("UniquePlayerHuman", new UniquePlayerHuman(), uniquePlayerHumanCheckBox.isSelected()));
 
-
+        // Add player checkboxes to the western panel
         playerSelectionPanel.add(wimpPlayerCheckBox);
         playerSelectionPanel.add(randomPlayerCheckBox);
         playerSelectionPanel.add(fifteenPlayerCheckBox);
@@ -96,7 +87,24 @@ public class BulldogGame extends JFrame {
         playerSelectionPanel.add(uniquePlayerGPTCheckBox);
         playerSelectionPanel.add(uniquePlayerHumanCheckBox);
 
-        add(playerSelectionPanel, BorderLayout.NORTH);
+        // Submit button.
+        submitButton = new JButton("Submit");
+        playerSelectionPanel.add(submitButton);
+
+        /* 
+         * This action listener will populate the blank center with 
+         * the names of the currently playing players, and 
+         * their current turn score, as well as total score. 
+         */
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Players: " + selectedPlayers.toString());
+
+            }
+        });
+
+        add(playerSelectionPanel, BorderLayout.WEST);
 
         setVisible(true);
     }
