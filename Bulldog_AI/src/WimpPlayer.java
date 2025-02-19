@@ -31,24 +31,21 @@ public class WimpPlayer extends Player {
         super(name);
     }
 
-    /********************************************************/
-    /* Method:  play                                        */
-    /* Purpose: Take one turn for this Player               */
-    /*          One turn for a WimpPlayer is a single roll  */
-    /* Parameters:                                          */
-    /*   none                                               */
-    /* Returns:                                             */
-    /*   the score earned by the player on this turn,       */
-    /*       which will be zero if a six was rolled         */
-    /********************************************************/
-    public int play() {
-        int turnScore = 0;
-        int roll = (int) (Math.random() * 6 + 1);
-        if (roll != 6) {
-            turnScore = roll;
+    /**
+     * This method will decide whether or not to continue rolling based on the WimpPlayer strategy.
+     */
+    public boolean evaulate_roll(int roll) {
+        // update score
+        setTurnScore(getTurnScore() + roll);
+
+        if (roll == 6) {
+            setTurnScore(0);
+
         }
 
-        setScore(getScore() + turnScore);
-        return turnScore;
+        setScore(getScore() + getTurnScore());
+        return false; // WimpPlayer always stops after one roll
     }
+
+
 }

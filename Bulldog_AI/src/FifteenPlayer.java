@@ -34,30 +34,23 @@ public class FifteenPlayer extends Player {
         super(name);
     }
 
-    /********************************************************/
-    /* Method:  play                                        */
-    /* Purpose: Take one turn for this Player               */
-    /*          Always rolls until it gets to fifteen       */
-    /* Parameters:                                          */
-    /*   none                                               */
-    /* Returns:                                             */
-    /*   the score earned by the player on this turn,       */
-    /*       which will be zero if a six was rolled         */
-    /********************************************************/
-    public int play() {
-        int turnScore = 0;
+    /*
+     * This method will decide whether or not to continue rolling based on whether or not to continue
+     * rolling based on logic in the play method. 
+     */
+    public boolean evaulate_roll(int roll) {
+        // update score
+        setTurnScore(getTurnScore() + roll);
 
-        while (turnScore < 15) {
-            int roll = (int) (Math.random() * 6 + 1);
-            if (roll == 6) {
-                turnScore = 0;
-                break;
-            } else {
-                turnScore += roll;
-            }
+        if (roll == 6) {
+            setTurnScore(0);
+            return false;
+            
+        } else if (getTurnScore() + roll >= 15) {
+            setScore(getScore() + getTurnScore()); // Update overall score if the 
+            return false;
         }
-
-        setScore(getScore() + turnScore);
-        return turnScore;
+        return true;
     }
+
 }

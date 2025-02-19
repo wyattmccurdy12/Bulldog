@@ -19,7 +19,6 @@ import java.util.Scanner;
 
 public class HumanPlayer extends Player {
     private Scanner scanner = new Scanner(System.in);
-    private int turnScore;
 
     /**
      * Constructor: Creates a default HumanPlayer.
@@ -37,36 +36,37 @@ public class HumanPlayer extends Player {
     }
 
     /**
+     * This method will decide whether or not to continue rolling based on the player's input.
+     */
+    public boolean evaulate_roll(int roll) {
+        // update score
+        setTurnScore(getTurnScore() + roll);
+
+        if (roll == 6) {
+            setTurnScore(0);
+            return false;
+        } else {
+            
+            return true;
+        }
+
+    }
+
+    /**
      * Takes one turn for this player, allowing the human to decide whether to roll or end the turn.
      * @return The score earned by the player on this turn, which will be zero if a six was rolled.
      */
     public int play() {
-        int totalScore = 0;
-        System.out.println("Would you like to roll? (y/n)?");
-
+        setTurnScore(0);
         boolean continueRolling = true;
-
-        String input = scanner.nextLine().trim().toLowerCase();
-        continueRolling = input.equals("y");
 
         while (continueRolling) {
             int roll = (int) (Math.random() * 6 + 1);
-            if (roll == 6) {
-                turnScore = 0;
-                break;
-            } else {
-                totalScore += roll;
-                System.out.println(" and now has a total score of " + totalScore + " for the turn.");
-                System.out.print("   Do you want to roll again? (y/n): ");
-                input = scanner.nextLine().trim().toLowerCase();
-                continueRolling = input.equals("y");
-                if (!continueRolling) {
-                    System.out.println("   Player " + getName() + " chose to end the turn with a score of " + totalScore);
-                }
-            }
+            continueRolling = evaulate_roll(roll);
         }
 
-        setScore(getScore() + turnScore);
-        return turnScore;
+        setScore(getScore() + getTurnScore());
+        System.out.println(getName() + "'s total score is " + getScore());
+        return getTurnScore();
     }
 }

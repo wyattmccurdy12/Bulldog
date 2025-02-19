@@ -18,6 +18,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * BulldogGame class manages the game between two to five players until one reaches 104 points.
@@ -29,12 +30,14 @@ public class BulldogGame extends JFrame {
     private Scanner scanner;
     private JTextArea textArea;
     private JButton submitButton;
+    private JButton startGameButton;
     private int numPlayers;
     private Player[] players;
     private HashMap<String, Player> selectedPlayers;
     private int[] scores;
     private boolean gameWon;
     private JPanel centerPanel;
+    private Random random;
 
     /**
      * Constructor initializes the game and sets up the UI.
@@ -42,6 +45,7 @@ public class BulldogGame extends JFrame {
     public BulldogGame() {
         scanner = new Scanner(System.in);
         selectedPlayers = new HashMap<>();
+        random = new Random();
         setupUI();
     }
 
@@ -57,7 +61,7 @@ public class BulldogGame extends JFrame {
         // Center text area
         textArea = new JTextArea("Welcome to the bulldog dice game!\nPlease use the checkboxes above\nto indicate the players you wish to participate");
         textArea.setEditable(false);
-        add(new JScrollPane(textArea), BorderLayout.NORTH);
+        add(new JScrollPane(textArea), BorderLayout.EAST);
 
         // Input panel 
         JPanel inputPanel = new JPanel();
@@ -119,6 +123,21 @@ public class BulldogGame extends JFrame {
             }
         });
 
+        // Start Game button
+        startGameButton = new JButton("Start Game");
+        startGameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                numPlayers = selectedPlayers.size();
+                if (numPlayers < 2 || numPlayers > 5) {
+                    textArea.append("\nPlease select between 2 to 5 players to start the game.\n");
+                } else {
+                    startGame();
+                }
+            }
+        });
+        add(startGameButton, BorderLayout.SOUTH);
+
         setVisible(true);
     }
 
@@ -126,26 +145,33 @@ public class BulldogGame extends JFrame {
      * Starts the game by initializing players and their scores, and managing the game loop.
      */
     public void startGame() {
-        players = new Player[numPlayers];
-        scores = new int[numPlayers];
-
-        // Initialize players and their scores
-        for (int i = 0; i < numPlayers; i++) {
-            players[i] = selectPlayer(i + 1);
-            scores[i] = 0;
-        }
 
         gameWon = false;
         // Game loop
         while (!gameWon) {
-            for (int i = 0; i < numPlayers; i++) {
-                textArea.append("\nPlayer " + (i + 1) + " (" + players[i].getName() + ")'s turn:\n");
-                scores[i] += players[i].play();
-                textArea.append("Player " + (i + 1) + " (" + players[i].getName() + ")'s total score: " + scores[i] + "\n");
+            for (Player player : selectedPlayers.values()) {
+                
+                // Set turn score to zero in order to get a proper turn score
+                player.setTurnScore(0);
+
+                textArea.append("\n" + player.getName() + "'s turn:\n");
+                int roll = roll_d6();
+                boolean player_going = player.evaulate_roll(roll);
+                textArea.append(player.getName() + " rolled a " + roll + "\n");
+                textArea.append(player.getName() + "'s turn score is " + player.getTurnScore() + "\n");
+
+                while (player_going) {
+                    roll = roll_d6();
+                    textArea.append(player.getName() + "Rolled a " + roll + "\n");
+                    player_going = player.evaulate_roll(roll);
+                    textArea.append(player.getName() + "'s turn score is " + player.getTurnScore() + "\n");
+                }
+
+                textArea.append(player.getName() + "'s total score is " + player.getScore() + "\n");
+                textArea.append("\n*************************************************************\n");
 
                 // Check if the current player has won
-                if (scores[i] >= WINNING_SCORE) {
-                    textArea.append("\nPlayer " + (i + 1) + " (" + players[i].getName() + ") wins!\n");
+                if (player.getScore() >= WINNING_SCORE) {
                     gameWon = true;
                     break;
                 }
@@ -156,38 +182,11 @@ public class BulldogGame extends JFrame {
     }
 
     /**
-     * Prompts the user to select a player type for each player.
-     * @param playerNumber The player number.
-     * @return The selected Player object.
+     * Rolls a six-sided die.
+     * @return The result of the die roll (1-6).
      */
-    private Player selectPlayer(int playerNumber) {
-        textArea.append("Select Player " + playerNumber + ":\n");
-        textArea.append("1. WimpPlayer\n");
-        textArea.append("2. RandomPlayer\n");
-        textArea.append("3. FifteenPlayer\n");
-        textArea.append("4. HumanPlayer\n");
-        textArea.append("5. UniquePlayerGPT\n");
-        textArea.append("6. UniquePlayerHuman\n");
-        textArea.append("Enter your choice: ");
-        int choice = Integer.parseInt(scanner.nextLine().trim());
-
-        switch (choice) {
-            case 1:
-                return new WimpPlayer();
-            case 2:
-                return new RandomPlayer();
-            case 3:
-                return new FifteenPlayer();
-            case 4:
-                return new HumanPlayer();
-            case 5:
-                return new UniquePlayerGPT();
-            case 6: 
-                return new UniquePlayerHuman();
-            default:
-                textArea.append("Invalid choice. Defaulting to WimpPlayer.\n");
-                return new WimpPlayer();
-        }
+    private int roll_d6() {
+        return random.nextInt(6) + 1;
     }
 
     /**

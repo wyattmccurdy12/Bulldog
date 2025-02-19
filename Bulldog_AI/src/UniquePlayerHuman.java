@@ -3,15 +3,16 @@ package src;
 /* Wyatt McCurdy                                        */
 /* COS 520, Spring 2025                                 */
 /* Bulldog Game                                         */
-/* UniquePlayer class: extends Player class             */
-/*           A UniquePlayer will simply roll four times  */
+/* UniquePlayerHuman class: extends Player class        */
+/*           A UniquePlayerHuman will simply roll       */
+/*           four times                                 */
 /********************************************************/
 
 public class UniquePlayerHuman extends Player {
 
     /********************************************************/
-    /* Constructor: UniquePlayer                            */
-    /* Purpose: Create a default UniquePlayer               */
+    /* Constructor: UniquePlayerHuman                       */
+    /* Purpose: Create a default UniquePlayerHuman          */
     /* Parameters:                                          */
     /*   none                                               */
     /********************************************************/
@@ -20,13 +21,29 @@ public class UniquePlayerHuman extends Player {
     }
 
     /********************************************************/
-    /* Constructor: UniquePlayer                            */
-    /* Purpose: Create a new UniquePlayer object            */
+    /* Constructor: UniquePlayerHuman                       */
+    /* Purpose: Create a new UniquePlayerHuman object       */
     /* Parameters:                                          */
     /*   String name:  the name of the Player being created */
     /********************************************************/
     public UniquePlayerHuman(String name) {
         super(name);
+    }
+
+    /**
+     * This method will decide whether or not to continue rolling based on a unique strategy.
+     */
+    public boolean evaulate_roll(int roll) {
+        // update score
+        setTurnScore(getTurnScore() + roll);
+
+        if (roll == 6) {
+            setTurnScore(0);
+            return false;
+        } else if (getTurnScore() >= 10 || roll >= 4) {
+            return false;
+        }
+        return true;
     }
 
     /********************************************************/
@@ -39,21 +56,17 @@ public class UniquePlayerHuman extends Player {
     /*       which will be zero if a six was rolled         */
     /********************************************************/
     public int play() {
-        int turnScore = 0;
+        setTurnScore(0);
         int numRolls = 0;
+        boolean continueRolling = true;
 
-        while (numRolls < 4) {
+        while (continueRolling && numRolls < 4) {
             int roll = (int) (Math.random() * 6 + 1);
-            if (roll != 6) {
-                turnScore += roll;
-            } else {
-                turnScore = 0;
-                break;
-            }
+            continueRolling = evaulate_roll(roll);
             numRolls++;
         }
 
-        setScore(getScore() + turnScore);
-        return turnScore;
+        setScore(getScore() + getTurnScore());
+        return getTurnScore();
     }
 }

@@ -34,6 +34,27 @@ public class RandomPlayer extends Player {
         super(name);
     }
 
+    /**
+     * This method will decide whether or not to continue rolling based on a random decision.
+     */
+    public boolean evaulate_roll(int roll) {
+        boolean continuing = true;
+        // update score
+        setTurnScore(getTurnScore() + roll);
+
+        if (roll == 6) {
+            setTurnScore(0);
+            return false;
+        } else {
+            continuing =  Math.random() < 0.5; // 50/50 chance to continue rolling
+        }
+
+        if (continuing == false) {
+            setScore(getScore() + getTurnScore());
+            return false;
+        } else { return true; }
+    }
+
     /********************************************************/
     /* Method:  play                                        */
     /* Purpose: Take one turn for this Player               */
@@ -45,21 +66,15 @@ public class RandomPlayer extends Player {
     /*       which will be zero if a six was rolled         */
     /********************************************************/
     public int play() {
-        int turnScore = 0;
+        setTurnScore(0);
         boolean continueRolling = true;
 
         while (continueRolling) {
             int roll = (int) (Math.random() * 6 + 1);
-            if (roll == 6) {
-                turnScore = 0;
-                break;
-            } else {
-                turnScore += roll;
-                continueRolling = Math.random() < 0.5; // 50/50 chance to continue rolling
-            }
+            continueRolling = evaulate_roll(roll);
         }
 
-        setScore(getScore() + turnScore);
-        return turnScore;
+        setScore(getScore() + getTurnScore());
+        return getTurnScore();
     }
 }
