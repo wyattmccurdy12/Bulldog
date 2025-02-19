@@ -1,3 +1,4 @@
+package src;
 /********************************************************/
 /* Wyatt McCurdy                                        */
 /* Login ID: wyatt.mccurdy@maine.edu                    */
@@ -36,8 +37,17 @@ public class HumanPlayer extends Player {
      * @return The score earned by the player on this turn, which will be zero if a six was rolled.
      */
     public int play() {
+<<<<<<< HEAD:Bulldog_AI/HumanPlayer.java
         int turnScore = 0;
+=======
+        int totalScore = 0;
+        System.out.println("Would you like to roll? (y/n)?");
+
+>>>>>>> extend-to-multiple-players:Bulldog_AI/src/HumanPlayer.java
         boolean continueRolling = true;
+
+        String input = scanner.nextLine().trim().toLowerCase();
+        continueRolling = input.equals("y");
 
         while (continueRolling) {
             int roll = (int) (Math.random() * 6 + 1);
@@ -45,9 +55,20 @@ public class HumanPlayer extends Player {
                 turnScore = 0;
                 break;
             } else {
+<<<<<<< HEAD:Bulldog_AI/HumanPlayer.java
                 turnScore += roll;
                 // The decision to continue rolling will be handled by the UI
                 continueRolling = false; // Placeholder, actual decision will be made in the UI
+=======
+                totalScore += roll;
+                System.out.println(" and now has a total score of " + totalScore + " for the turn.");
+                System.out.print("   Do you want to roll again? (y/n): ");
+                input = scanner.nextLine().trim().toLowerCase();
+                continueRolling = input.equals("y");
+                if (!continueRolling) {
+                    System.out.println("   Player " + getName() + " chose to end the turn with a score of " + totalScore);
+                }
+>>>>>>> extend-to-multiple-players:Bulldog_AI/src/HumanPlayer.java
             }
         }
 
