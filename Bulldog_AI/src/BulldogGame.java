@@ -188,17 +188,33 @@ public class BulldogGame extends JFrame {
     private void continueTurn() {
         boolean player_going = true;
         while (player_going) {
-            int roll = roll_d6();
-            textArea.append(currentPlayer.getName() + " rolled a " + roll + "\n");
-
-            player_going = currentPlayer.evaulate_roll(roll);
-            textArea.append(currentPlayer.getName() + "'s turn score is " + currentPlayer.getTurnScore() + "\n");
-
-            if (!player_going) {
-                break;
-            }
-
-            if (currentPlayer instanceof HumanPlayer) {
+            if (currentPlayer instanceof HumanPlayer && humanPlayerRolling) {
+                int roll = roll_d6();
+                textArea.append(currentPlayer.getName() + " rolled a " + roll + "\n");
+    
+                player_going = currentPlayer.evaulate_roll(roll);
+                textArea.append(currentPlayer.getName() + "'s turn score is " + currentPlayer.getTurnScore() + "\n");
+    
+                if (!player_going) {
+                    break;
+                }
+    
+                rollAgainButton.setEnabled(true);
+                endTurnButton.setEnabled(true);
+                buttonPanel.revalidate();
+                buttonPanel.repaint();
+                return;
+            } else if (!(currentPlayer instanceof HumanPlayer)) {
+                int roll = roll_d6();
+                textArea.append(currentPlayer.getName() + " rolled a " + roll + "\n");
+    
+                player_going = currentPlayer.evaulate_roll(roll);
+                textArea.append(currentPlayer.getName() + "'s turn score is " + currentPlayer.getTurnScore() + "\n");
+    
+                if (!player_going) {
+                    break;
+                }
+            } else {
                 rollAgainButton.setEnabled(true);
                 endTurnButton.setEnabled(true);
                 buttonPanel.revalidate();
@@ -206,11 +222,12 @@ public class BulldogGame extends JFrame {
                 return;
             }
         }
-
+    
         endTurn();
     }
 
     private void continueHumanTurn() {
+        humanPlayerRolling = true;
         rollAgainButton.setEnabled(false);
         endTurnButton.setEnabled(false);
         buttonPanel.revalidate();
@@ -219,6 +236,7 @@ public class BulldogGame extends JFrame {
     }
 
     private void endHumanTurn() {
+        humanPlayerRolling = false;
         rollAgainButton.setEnabled(false);
         endTurnButton.setEnabled(false);
         buttonPanel.revalidate();
