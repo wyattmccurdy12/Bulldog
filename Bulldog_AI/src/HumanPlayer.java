@@ -46,10 +46,8 @@ public class HumanPlayer extends Player {
             setTurnScore(0);
             return false;
         } else {
-            
             return true;
         }
-
     }
 
     /**

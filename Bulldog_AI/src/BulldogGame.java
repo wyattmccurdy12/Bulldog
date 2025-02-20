@@ -139,7 +139,6 @@ public class BulldogGame extends JFrame {
                 }
             }
         });
-        // add(startGameButton, BorderLayout.SOUTH);
 
         // Roll Again and End Turn buttons for human player
         rollAgainButton = new JButton("Roll Again");
@@ -185,6 +184,9 @@ public class BulldogGame extends JFrame {
         continueTurn();
     }
 
+    /**
+     * Continues the current player's turn until they decide to stop or roll a losing number.
+     */
     private void continueTurn() {
         boolean player_going = true;
         while (player_going) {
@@ -195,15 +197,20 @@ public class BulldogGame extends JFrame {
                 player_going = currentPlayer.evaulate_roll(roll);
                 textArea.append(currentPlayer.getName() + "'s turn score is " + currentPlayer.getTurnScore() + "\n");
     
-                if (!player_going) {
-                    break;
+                if (!player_going || roll == 6) {
+                    textArea.append("You rolled a six! Your turn ends. Please click 'End Turn'.\n");
+                    rollAgainButton.setEnabled(false);
+                    endTurnButton.setEnabled(true);
+                    buttonPanel.revalidate();
+                    buttonPanel.repaint();
+                    return;
                 }
     
                 rollAgainButton.setEnabled(true);
                 endTurnButton.setEnabled(true);
                 buttonPanel.revalidate();
                 buttonPanel.repaint();
-                return;
+                return; // Wait for human player to take action
             } else if (!(currentPlayer instanceof HumanPlayer)) {
                 int roll = roll_d6();
                 textArea.append(currentPlayer.getName() + " rolled a " + roll + "\n");
@@ -219,13 +226,16 @@ public class BulldogGame extends JFrame {
                 endTurnButton.setEnabled(true);
                 buttonPanel.revalidate();
                 buttonPanel.repaint();
-                return;
+                return; // Wait for human player to take action
             }
         }
     
         endTurn();
     }
-
+    
+    /**
+     * Continues the human player's turn by enabling the roll again and end turn buttons.
+     */
     private void continueHumanTurn() {
         humanPlayerRolling = true;
         rollAgainButton.setEnabled(false);
@@ -235,6 +245,9 @@ public class BulldogGame extends JFrame {
         continueTurn();
     }
 
+    /**
+     * Ends the human player's turn by disabling the roll again and end turn buttons.
+     */
     private void endHumanTurn() {
         humanPlayerRolling = false;
         rollAgainButton.setEnabled(false);
@@ -244,6 +257,10 @@ public class BulldogGame extends JFrame {
         endTurn();
     }
 
+    /**
+     * Ends the current player's turn and checks if they have won the game.
+     * If not, it moves to the next player's turn.
+     */
     private void endTurn() {
         textArea.append(currentPlayer.getName() + "'s total score is " + currentPlayer.getScore() + "\n");
 
