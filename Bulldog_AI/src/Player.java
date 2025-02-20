@@ -91,6 +91,7 @@ public abstract class Player {
      * 
      * <p>Purpose: abstract method to evaluate the roll</p>
      * 
+     * @param roll the value of the roll
      * @return boolean result of the roll evaluation
      */
     public abstract boolean evaulate_roll(int roll);
