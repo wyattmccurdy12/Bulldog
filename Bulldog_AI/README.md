@@ -12,6 +12,10 @@ During a player turn, the player may do one of two things:
 
 Players take turns rolling until a player reaches the winning score.
 
+**Notes** 
+1. Currently, the first player to reach the winning score wins. This will be changed in the future. In a perfect world, each player would be able to get the same number of turns and the player with the highest score would win after a player reaches the winning score.
+
+
 ## Player Types
 
 In this implementation, there are several players that the game user may pit against one another:
@@ -29,6 +33,11 @@ In this implementation, there are several players that the game user may pit aga
 2. **Start Game**: Click the "Start Game" button to begin.
 3. **Player Turns**: Players take turns rolling the die according to their strategies.
 4. **Winning**: The first player to reach the winning score (104 points) wins the game.
+
+## Notes on the user interface
+1. Once you press the "submit" button upon selecting players, the game will let you know that it has started. Do not re-select players after the game starts.
+2. After you hit the Submit button, the center panel of the game will inform you that the game has started, and "who" is playing. You will then be able to hit the "start game" button to begin. 
+3. After the game ends, players will be cleared. You may then re-select players, submit, and start another time if you so choose. The game's state will be reset after the end of each game. 
 
 ## Code Structure
 

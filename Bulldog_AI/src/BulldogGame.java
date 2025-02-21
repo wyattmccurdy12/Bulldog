@@ -124,10 +124,12 @@ public class BulldogGame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 centerPanel.removeAll();
+                centerPanel.add(new JLabel("Game is about to start! Players are:"));
                 for (String playerType : selectedPlayers.keySet()) {
-                    JLabel playerLabel = new JLabel("<html><u>" + playerType + "</u><br>Turn score: <br>Total score: </html>");
+                    JLabel playerLabel = new JLabel(playerType);
                     centerPanel.add(playerLabel);
                 }
+                centerPanel.add(new JLabel("Click 'Start Game' to begin."));
                 centerPanel.revalidate();
                 centerPanel.repaint();
             }
@@ -187,6 +189,16 @@ public class BulldogGame extends JFrame {
         players = selectedPlayers.values().toArray(new Player[0]);
         currentPlayerIndex = 0;
         currentPlayer = players[currentPlayerIndex];
+
+        // Clear the center panel and move game start text to the EAST text area
+        centerPanel.removeAll();
+        centerPanel.revalidate();
+        centerPanel.repaint();
+
+        textArea.append("\nThe game has started! Players are:\n");
+        for (Player player : players) {
+            textArea.append(player.getName() + "\n");
+        }
         textArea.append("\n" + currentPlayer.getName() + "'s turn:\n");
         continueTurn();
     }
@@ -226,6 +238,7 @@ public class BulldogGame extends JFrame {
                 textArea.append(currentPlayer.getName() + "'s turn score is " + currentPlayer.getTurnScore() + "\n");
     
                 if (!player_going) {
+                    currentPlayer.setScore(currentPlayer.getScore() + currentPlayer.getTurnScore());
                     break;
                 }
             } else {
@@ -279,6 +292,7 @@ public class BulldogGame extends JFrame {
             textArea.append("\n" + currentPlayer.getName() + " has won the game with a score of " + currentPlayer.getScore() + "!\n");
             gameWon = true;
             textArea.append("\nThank you for playing Bulldog Game!\n");
+            resetGame();
             return;
         }
 
@@ -288,6 +302,19 @@ public class BulldogGame extends JFrame {
         textArea.append("\n" + currentPlayer.getName() + "'s turn:\n");
         continueTurn();
     }
+
+    /**
+     * Resets the game state and player scores to allow a new game to be played.
+     */
+    private void resetGame() {
+        for (Player player : players) {
+            player.setScore(0);
+            player.setTurnScore(0);
+        }
+        selectedPlayers.clear();
+        textArea.append("\nGame has been reset. You may select new players and start a new game.\n");
+    }
+
     /**
      * Rolls a six-sided die.
      * @return The result of the die roll (1-6).

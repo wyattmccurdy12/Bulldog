@@ -39,8 +39,6 @@ public class RandomPlayer extends Player {
      */
     public boolean evaulate_roll(int roll) {
         boolean continuing = true;
-        // update score
-        setTurnScore(getTurnScore() + roll);
 
         if (roll == 6) {
             setTurnScore(0);
@@ -53,28 +51,5 @@ public class RandomPlayer extends Player {
             setScore(getScore() + getTurnScore());
             return false;
         } else { return true; }
-    }
-
-    /********************************************************/
-    /* Method:  play                                        */
-    /* Purpose: Take one turn for this Player               */
-    /*          Randomly decides whether to roll or end     */
-    /* Parameters:                                          */
-    /*   none                                               */
-    /* Returns:                                             */
-    /*   the score earned by the player on this turn,       */
-    /*       which will be zero if a six was rolled         */
-    /********************************************************/
-    public int play() {
-        setTurnScore(0);
-        boolean continueRolling = true;
-
-        while (continueRolling) {
-            int roll = (int) (Math.random() * 6 + 1);
-            continueRolling = evaulate_roll(roll);
-        }
-
-        setScore(getScore() + getTurnScore());
-        return getTurnScore();
     }
 }

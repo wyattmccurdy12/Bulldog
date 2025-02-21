@@ -34,6 +34,9 @@ public class UniquePlayerGPT extends Player {
 
     /**
      * This method will decide whether or not to continue rolling based on a unique strategy.
+     * 
+     * @param roll the value of the roll
+     * @return boolean result of the roll evaluation
      */
     public boolean evaulate_roll(int roll) {
         // update score
@@ -46,22 +49,5 @@ public class UniquePlayerGPT extends Player {
             return false;
         }
         return true;
-    }
-
-    /**
-     * Takes one turn for this player using a unique strategy to maximize the score.
-     * @return The score earned by the player on this turn, which will be zero if a six was rolled.
-     */
-    public int play() {
-        setTurnScore(0);
-        boolean continueRolling = true;
-
-        while (continueRolling) {
-            int roll = (int) (Math.random() * 6 + 1);
-            continueRolling = evaulate_roll(roll);
-        }
-
-        setScore(getScore() + getTurnScore());
-        return getTurnScore();
     }
 }

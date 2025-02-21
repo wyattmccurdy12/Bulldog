@@ -37,6 +37,9 @@ public class HumanPlayer extends Player {
 
     /**
      * This method will decide whether or not to continue rolling based on the player's input.
+     * 
+     * @param roll the value of the roll
+     * @return boolean result of the roll evaluation
      */
     public boolean evaulate_roll(int roll) {
         // update score
@@ -48,23 +51,5 @@ public class HumanPlayer extends Player {
         } else {
             return true;
         }
-    }
-
-    /**
-     * Takes one turn for this player, allowing the human to decide whether to roll or end the turn.
-     * @return The score earned by the player on this turn, which will be zero if a six was rolled.
-     */
-    public int play() {
-        setTurnScore(0);
-        boolean continueRolling = true;
-
-        while (continueRolling) {
-            int roll = (int) (Math.random() * 6 + 1);
-            continueRolling = evaulate_roll(roll);
-        }
-
-        setScore(getScore() + getTurnScore());
-        System.out.println(getName() + "'s total score is " + getScore());
-        return getTurnScore();
     }
 }
