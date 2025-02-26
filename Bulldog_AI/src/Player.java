@@ -5,11 +5,14 @@ package src;
  * 
  * <p>See Kettering University, CS-101, Prog 6</p>
  * 
- * <p>Programming Assignment 6</p>
  * 
- * <p>David Levine</p>
- * <p>Login ID: david.b.levine@maine.edu</p>
- * <p>COS 497, Summer 2024</p>
+ * <p>Wyatt McCurdy</p>
+ * <p>Login ID: wyatt.mccurdy@maine.edu</p>
+ * <p>COS 420/520, Spring 2025</p>
+ * 
+ * 
+ * Written with help from Github Copilot (GPT-4o)
+ * 
  */
 public abstract class Player {
     

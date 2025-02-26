@@ -19,16 +19,17 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 /**
- * BulldogGame class manages the game between two to five players until one reaches 104 points.
+ * BulldogGame class manages the game between two to five players until one reaches the winning score.
  * It provides a simple UI for user interaction.
  * 
- * <p>See Kettering University, CS-101, Prog 6</p>
+ * <p>For reference to where this idea came from, See Kettering University, CS-101, Prog 6</p>
  * 
- * <p>Programming Assignment 6</p>
  * 
  * <p>Wyatt McCurdy</p>
  * <p>Login ID: wyatt.mccurdy@maine.edu</p>
- * <p>COS 520, Spring 2025</p>
+ * <p>COS 420/520, Spring 2025</p>
+ * 
+ * Written with help from Github Copilot (GPT-4o)
  */
 public class BulldogGame extends JFrame {
 
@@ -324,7 +325,7 @@ public class BulldogGame extends JFrame {
     }
 
     /**
-     * Toggles the selection of a player type.
+     * Toggles the selection of a player type - controlled by a checkbox (on/off).
      * @param playerType The type of player.
      * @param player The player object.
      * @param isSelected Whether the player is selected.

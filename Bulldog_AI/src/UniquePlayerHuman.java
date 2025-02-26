@@ -1,37 +1,39 @@
 package src;
-/********************************************************/
-/* Wyatt McCurdy                                        */
-/* COS 520, Spring 2025                                 */
-/* Bulldog Game                                         */
-/* UniquePlayerHuman class: extends Player class        */
-/*           A UniquePlayerHuman will simply roll       */
-/*           four times                                 */
-/********************************************************/
 
+/**
+ * UniquePlayerHuman class: A unique player that will simply roll four times.
+ * 
+ * <p>See Kettering University, CS-101, Prog 6</p>
+ * 
+ * <p>Wyatt McCurdy</p>
+ * <p>Login ID: wyatt.mccurdy@maine.edu</p>
+ * <p>COS 420/520, Spring 2025</p>
+ * 
+ * Written with help from Github Copilot (GPT-4o)
+ */
 public class UniquePlayerHuman extends Player {
 
-    /********************************************************/
-    /* Constructor: UniquePlayerHuman                       */
-    /* Purpose: Create a default UniquePlayerHuman          */
-    /* Parameters:                                          */
-    /*   none                                               */
-    /********************************************************/
+    /**
+     * Constructor: Creates a default UniquePlayerHuman.
+     */
     public UniquePlayerHuman() {
         this("UniqueHuman");
     }
 
-    /********************************************************/
-    /* Constructor: UniquePlayerHuman                       */
-    /* Purpose: Create a new UniquePlayerHuman object       */
-    /* Parameters:                                          */
-    /*   String name:  the name of the Player being created */
-    /********************************************************/
+    /**
+     * Constructor: Creates a new UniquePlayerHuman object with the given name.
+     * 
+     * @param name The name of the player being created.
+     */
     public UniquePlayerHuman(String name) {
         super(name);
     }
 
     /**
-     * This method will decide whether or not to continue rolling based on a unique strategy.
+     * This method will decide whether or not to continue rolling based on a unique strategy (roll four times every turn).
+     * 
+     * @param roll the value of the roll
+     * @return boolean result of the roll evaluation
      */
     public boolean evaulate_roll(int roll) {
         // update score

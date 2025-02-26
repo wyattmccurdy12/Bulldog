@@ -5,11 +5,9 @@ package src;
  * 
  * <p>See Kettering University, CS-101, Prog 6</p>
  * 
- * <p>Programming Assignment 6</p>
- * 
- * <p>David Levine</p>
- * <p>Login ID: david.b.levine@maine.edu</p>
- * <p>COS 497, Summer 2024</p>
+ * <p>Wyatt McCurdy</p>
+ * <p>Login ID: wyatt.mccurdy@maine.edu</p>
+ * <p>COS 420/520, Spring 2025</p>
  */
 public class WimpPlayer extends Player {
 
@@ -32,7 +30,7 @@ public class WimpPlayer extends Player {
     }
 
     /**
-     * This method will decide whether or not to continue rolling based on the WimpPlayer strategy.
+     * This method will decide whether or not to continue rolling based on the WimpPlayer strategy (roll once).
      * 
      * @param roll the value of the roll
      * @return boolean result of the roll evaluation
