@@ -15,8 +15,6 @@ import java.util.Scanner;
  * Written with help from Github Copilot (GPT-4o)
  */
 public class HumanPlayer extends Player {
-    private Scanner scanner = new Scanner(System.in);
-
     /**
      * Constructor: Creates a default HumanPlayer.
      */

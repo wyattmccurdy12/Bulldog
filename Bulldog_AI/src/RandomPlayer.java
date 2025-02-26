@@ -13,6 +13,8 @@ package src;
  */
 public class RandomPlayer extends Player {
 
+    private Dice dice;
+
     /**
      * Constructor: Creates a default RandomPlayer.
      */
@@ -27,6 +29,7 @@ public class RandomPlayer extends Player {
      */
     public RandomPlayer(String name) {
         super(name);
+        this.dice = new Dice(2); // Initialize a two-sided dice for 50/50 chance
     }
 
     /**
@@ -36,17 +39,20 @@ public class RandomPlayer extends Player {
      * @return boolean result of the roll evaluation
      */
     public boolean evaulate_roll(int roll) {
+
+        // Immediatly add the player's roll to the turn score
+        setTurnScore(getTurnScore() + roll);
+
         boolean continuing = true;
 
         if (roll == 6) {
             setTurnScore(0);
             return false;
         } else {
-            continuing = Math.random() < 0.5; // 50/50 chance to continue rolling
+            continuing = dice.roll() == 1; // 50/50 chance to continue rolling
         }
 
         if (!continuing) {
-            setScore(getScore() + getTurnScore());
             return false;
         } else {
             return true;

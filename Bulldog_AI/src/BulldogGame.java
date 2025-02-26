@@ -2,11 +2,11 @@ package src;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
-import java.util.Random;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -45,18 +45,19 @@ public class BulldogGame extends JFrame {
     private int[] scores;
     private boolean gameWon;
     private JPanel centerPanel;
-    private Random random;
+    private Dice dice;
     private boolean humanPlayerRolling;
     private JPanel buttonPanel;
     private Player currentPlayer;
     private int currentPlayerIndex;
+    private JPanel playerSelectionPanel = new JPanel();
 
     /**
      * Constructor initializes the game and sets up the UI.
      */
     public BulldogGame() {
         selectedPlayers = new HashMap<>();
-        random = new Random();
+        dice = new Dice(6); // Initialize a six-sided dice
         setupUI();
     }
 
@@ -70,7 +71,7 @@ public class BulldogGame extends JFrame {
         setLayout(new BorderLayout());
 
         // Center text area
-        textArea = new JTextArea("Welcome to the bulldog dice game!\nPlease use the checkboxes above\nto indicate the players you wish to participate");
+        textArea = new JTextArea();
         textArea.setEditable(false);
         add(new JScrollPane(textArea), BorderLayout.EAST);
 
@@ -79,7 +80,7 @@ public class BulldogGame extends JFrame {
         inputPanel.setLayout(new BorderLayout());
 
         // Add checkboxes for player selection
-        JPanel playerSelectionPanel = new JPanel();
+        
         playerSelectionPanel.setLayout(new GridLayout(6, 1));
         playerSelectionPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK)); // Add border
 
@@ -188,6 +189,18 @@ public class BulldogGame extends JFrame {
         gameWon = false;
         scores = new int[numPlayers];
         players = selectedPlayers.values().toArray(new Player[0]);
+
+        // After the players are selected, clear the selections from the hashmap
+        // and un-check the checkboxes
+        selectedPlayers.clear();
+
+        // Un-check the checkboxes
+        for (Component component : playerSelectionPanel.getComponents()) {
+            if (component instanceof JCheckBox) {
+                ((JCheckBox) component).setSelected(false);
+            }
+        }
+
         currentPlayerIndex = 0;
         currentPlayer = players[currentPlayerIndex];
 
@@ -275,6 +288,8 @@ public class BulldogGame extends JFrame {
         endTurnButton.setEnabled(false);
         buttonPanel.revalidate();
         buttonPanel.repaint();
+        currentPlayer.setScore(currentPlayer.getScore() + currentPlayer.getTurnScore());
+
         endTurn();
     }
 
@@ -321,7 +336,7 @@ public class BulldogGame extends JFrame {
      * @return The result of the die roll (1-6).
      */
     private int roll_d6() {
-        return random.nextInt(6) + 1;
+        return dice.roll();
     }
 
     /**

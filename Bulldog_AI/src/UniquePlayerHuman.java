@@ -12,6 +12,7 @@ package src;
  * Written with help from Github Copilot (GPT-4o)
  */
 public class UniquePlayerHuman extends Player {
+    private int num_rolls = 0;
 
     /**
      * Constructor: Creates a default UniquePlayerHuman.
@@ -36,11 +37,15 @@ public class UniquePlayerHuman extends Player {
      * @return boolean result of the roll evaluation
      */
     public boolean evaulate_roll(int roll) {
+        num_rolls = num_rolls + 1;
         // update score
         setTurnScore(getTurnScore() + roll);
 
         if (roll == 6) {
             setTurnScore(0);
+            return false;
+        }
+        else if (num_rolls > 4) {
             return false;
         }
         return true;
