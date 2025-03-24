@@ -98,4 +98,5 @@ public abstract class Player {
      * @return boolean result of the roll evaluation
      */
     public abstract boolean evaulate_roll(int roll);
+
 }

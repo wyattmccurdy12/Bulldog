@@ -94,7 +94,7 @@ public class BulldogGameController {
             int roll = model.rollDice();
             view.getTextArea().append(currentPlayer.getName() + " rolled a " + roll + "\n");
 
-            playerGoing = currentPlayer.evaluateRoll(roll);
+            playerGoing = currentPlayer.evaulate_roll(roll);
             view.getTextArea().append(currentPlayer.getName() + "'s turn score is " + currentPlayer.getTurnScore() + "\n");
 
             if (!playerGoing || roll == 6) {
