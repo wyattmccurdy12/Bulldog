@@ -13,6 +13,7 @@
  * - JButton: Provides buttons for user actions (e.g., start game, roll dice).
  * - JCheckBox: Allows the user to select player types.
  * - JPanel: Organizes UI components into sections.
+ * - JTable: Displays the scoreboard with player names and scores.
  * 
  * <p>Wyatt McCurdy</p>
  * <p>Login ID: wyatt.mccurdy@maine.edu</p>
@@ -23,6 +24,7 @@
 package src;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,6 +39,9 @@ public class BulldogGameView extends JFrame {
     private JPanel centerPanel;
     private JPanel buttonPanel;
     private Map<String, JCheckBox> playerCheckBoxes;
+    private JTable scoreboardTable; // JTable for the scoreboard
+    private DefaultTableModel scoreboardModel; // Table model for dynamic updates
+    private JLabel welcomeMessage; // Welcome message at the top of the center panel
 
     /**
      * Constructs a new BulldogGameView and initializes the user interface.
@@ -61,8 +66,8 @@ public class BulldogGameView extends JFrame {
 
         // Panel for player selection checkboxes
         playerSelectionPanel = new JPanel();
-        playerSelectionPanel.setLayout(new GridLayout(6, 1));
-        playerSelectionPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        playerSelectionPanel.setLayout(new GridLayout(7, 1)); // Adjusted for 6 players + submit button
+        playerSelectionPanel.setBorder(BorderFactory.createTitledBorder("Player Selection"));
 
         // Add checkboxes for player types
         playerCheckBoxes = new HashMap<>();
@@ -80,8 +85,20 @@ public class BulldogGameView extends JFrame {
 
         // Center panel for dynamic game content
         centerPanel = new JPanel();
-        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
-        centerPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        centerPanel.setLayout(new BorderLayout());
+        centerPanel.setBorder(BorderFactory.createTitledBorder("Game Info"));
+
+        // Welcome message at the top of the center panel
+        welcomeMessage = new JLabel("Welcome to the Bulldog Game! Select players to begin.");
+        welcomeMessage.setHorizontalAlignment(SwingConstants.CENTER);
+        centerPanel.add(welcomeMessage, BorderLayout.NORTH);
+
+        // Initialize the scoreboard table
+        scoreboardModel = new DefaultTableModel(new String[] { "Player", "Score" }, 0);
+        scoreboardTable = new JTable(scoreboardModel);
+        JScrollPane scoreboardScrollPane = new JScrollPane(scoreboardTable);
+        centerPanel.add(scoreboardScrollPane, BorderLayout.CENTER);
+
         add(centerPanel, BorderLayout.CENTER);
 
         // Buttons for game actions
@@ -110,6 +127,27 @@ public class BulldogGameView extends JFrame {
         JCheckBox checkBox = new JCheckBox(playerType);
         playerCheckBoxes.put(playerType, checkBox);
         playerSelectionPanel.add(checkBox);
+    }
+
+    /**
+     * Updates the scoreboard with the current players and their scores.
+     * 
+     * @param players A map of player names to their scores.
+     */
+    public void updateScoreboard(Map<String, Integer> players) {
+        scoreboardModel.setRowCount(0); // Clear existing rows
+        for (Map.Entry<String, Integer> entry : players.entrySet()) {
+            scoreboardModel.addRow(new Object[] { entry.getKey(), entry.getValue() });
+        }
+    }
+
+    /**
+     * Updates the welcome message in the center panel.
+     * 
+     * @param message The new welcome message to display.
+     */
+    public void updateWelcomeMessage(String message) {
+        welcomeMessage.setText(message);
     }
 
     /**
@@ -182,5 +220,14 @@ public class BulldogGameView extends JFrame {
      */
     public JPanel getButtonPanel() {
         return buttonPanel;
+    }
+
+    /**
+     * Returns the scoreboard table for dynamic updates.
+     * 
+     * @return The JTable instance for the scoreboard.
+     */
+    public JTable getScoreboardTable() {
+        return scoreboardTable;
     }
 }

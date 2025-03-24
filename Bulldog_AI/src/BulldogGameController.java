@@ -22,13 +22,10 @@
  */
 package src;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JCheckBox;
-import javax.swing.JLabel;
 
 public class BulldogGameController {
 
@@ -62,18 +59,12 @@ public class BulldogGameController {
     }
 
     /**
-     * Configures the "Submit" button to display selected players.
+     * Configures the "Submit" button to process selected players.
      */
     private void setupSubmitButton() {
         view.getSubmitButton().addActionListener(e -> {
-            view.getCenterPanel().removeAll();
-            view.getCenterPanel().add(new JLabel("Game is about to start! Players are:"));
-            for (String playerType : selectedPlayers.keySet()) {
-                view.getCenterPanel().add(new JLabel(playerType));
-            }
-            view.getCenterPanel().add(new JLabel("Click 'Start Game' to begin."));
-            view.getCenterPanel().revalidate();
-            view.getCenterPanel().repaint();
+            // Update the welcome message in the view
+            view.updateWelcomeMessage("Game is about to start! Players are: " + String.join(", ", selectedPlayers.keySet()));
         });
     }
 
@@ -129,6 +120,7 @@ public class BulldogGameController {
         for (Player player : model.getPlayers()) {
             view.getTextArea().append(player.getName() + "\n");
         }
+        updateScoreboard(); // Update the scoreboard with initial scores
         view.getTextArea().append("\n" + model.getCurrentPlayer().getName() + "'s turn:\n");
         continueTurn();
     }
@@ -198,6 +190,7 @@ public class BulldogGameController {
         currentPlayer.setScore(currentPlayer.getScore() + currentPlayer.getTurnScore());
         view.getTextArea().append(currentPlayer.getName() + "'s total score is " + currentPlayer.getScore() + "\n");
         disableHumanPlayerControls();
+        updateScoreboard(); // Update the scoreboard after the turn ends
         endTurn();
     }
 
@@ -224,12 +217,25 @@ public class BulldogGameController {
             view.getTextArea().append("\n" + currentPlayer.getName() + " has won the game with a score of " + currentPlayer.getScore() + "!\n");
             view.getTextArea().append("\nThank you for playing Bulldog Game!\n");
             model.resetGame();
+            updateScoreboard(); // Clear the scoreboard after the game ends
             return;
         }
 
         model.nextPlayer();
+        updateScoreboard(); // Update the scoreboard for the next player's turn
         view.getTextArea().append("\n" + model.getCurrentPlayer().getName() + "'s turn:\n");
         continueTurn();
+    }
+
+    /**
+     * Updates the scoreboard in the view with the current players and their scores.
+     */
+    private void updateScoreboard() {
+        Map<String, Integer> playerScores = new HashMap<>();
+        for (Player player : model.getPlayers()) {
+            playerScores.put(player.getName(), player.getScore());
+        }
+        view.updateScoreboard(playerScores);
     }
 
     /**
