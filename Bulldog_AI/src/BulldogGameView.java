@@ -1,26 +1,3 @@
-/**
- * The BulldogGameView class represents the View in the MVC architecture
- * for the Bulldog Game. It is responsible for displaying the user interface
- * and providing components for user interaction.
- * 
- * Responsibilities:
- * - Displays the game state and player information.
- * - Provides buttons and checkboxes for user input.
- * - Updates the UI based on the game's state.
- * 
- * Dependencies:
- * - JTextArea: Displays game messages and updates.
- * - JButton: Provides buttons for user actions (e.g., start game, roll dice).
- * - JCheckBox: Allows the user to select player types.
- * - JPanel: Organizes UI components into sections.
- * - JTable: Displays the scoreboard with player names and scores.
- * 
- * <p>Wyatt McCurdy</p>
- * <p>Login ID: wyatt.mccurdy@maine.edu</p>
- * <p>COS 420/520, Spring 2025</p>
- * 
- * Written with help from Github Copilot (GPT-4o)
- */
 package src;
 
 import javax.swing.*;
@@ -39,9 +16,9 @@ public class BulldogGameView extends JFrame {
     private JPanel centerPanel;
     private JPanel buttonPanel;
     private Map<String, JCheckBox> playerCheckBoxes;
-    private JTable scoreboardTable; // JTable for the scoreboard
-    private DefaultTableModel scoreboardModel; // Table model for dynamic updates
-    private JLabel welcomeMessage; // Welcome message at the top of the center panel
+    private JTable scoreboardTable;
+    private DefaultTableModel scoreboardModel;
+    private JLabel welcomeMessage;
 
     /**
      * Constructs a new BulldogGameView and initializes the user interface.
@@ -66,7 +43,7 @@ public class BulldogGameView extends JFrame {
 
         // Panel for player selection checkboxes
         playerSelectionPanel = new JPanel();
-        playerSelectionPanel.setLayout(new GridLayout(7, 1)); // Adjusted for 6 players + submit button
+        playerSelectionPanel.setLayout(new GridLayout(7, 1));
         playerSelectionPanel.setBorder(BorderFactory.createTitledBorder("Player Selection"));
 
         // Add checkboxes for player types
@@ -148,6 +125,24 @@ public class BulldogGameView extends JFrame {
      */
     public void updateWelcomeMessage(String message) {
         welcomeMessage.setText(message);
+    }
+
+    /**
+     * Enables or disables the roll button.
+     * 
+     * @param enable True to enable the button, false to disable it.
+     */
+    public void enableRollButton(boolean enable) {
+        rollAgainButton.setEnabled(enable);
+    }
+
+    /**
+     * Enables or disables the end turn button.
+     * 
+     * @param enable True to enable the button, false to disable it.
+     */
+    public void enableEndTurnButton(boolean enable) {
+        endTurnButton.setEnabled(enable);
     }
 
     /**
