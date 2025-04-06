@@ -42,7 +42,7 @@ public class Referee {
             int roll = model.rollDice();
             turnSummary.append(currentPlayer.getName()).append(" rolled a ").append(roll).append("\n");
 
-            if (!currentPlayer.evaulate_roll(roll)) {
+            if (!currentPlayer.evaluate_roll(roll)) {
                 turnSummary.append(currentPlayer.getName()).append("'s turn ends.\n");
                 break;
             }

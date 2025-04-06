@@ -39,7 +39,7 @@ public class FifteenPlayer extends Player {
      * @param roll the roll provided by the game
      * @return true if the player should continue rolling, false otherwise
      */
-    public boolean evaulate_roll(int roll) {
+    public boolean evaluate_roll(int roll) {
         // update score
         setTurnScore(getTurnScore() + roll);
 

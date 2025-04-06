@@ -38,7 +38,7 @@ public class RandomPlayer extends Player {
      * @param roll the value of the roll
      * @return boolean result of the roll evaluation
      */
-    public boolean evaulate_roll(int roll) {
+    public boolean evaluate_roll(int roll) {
 
         // Immediatly add the player's roll to the turn score
         setTurnScore(getTurnScore() + roll);

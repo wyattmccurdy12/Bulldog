@@ -36,7 +36,7 @@ public class UniquePlayerHuman extends Player {
      * @param roll the value of the roll
      * @return boolean result of the roll evaluation
      */
-    public boolean evaulate_roll(int roll) {
+    public boolean evaluate_roll(int roll) {
         num_rolls = num_rolls + 1;
         // update score
         setTurnScore(getTurnScore() + roll);

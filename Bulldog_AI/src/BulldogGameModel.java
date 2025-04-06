@@ -1,17 +1,12 @@
 /**
  * The BulldogGameModel class represents the Model in the MVC architecture
- * for the Bulldog Game. It manages the game logic, including player data,
- * dice rolls, and determining the game's state.
+ * for the Bulldog Game. It is the data portion of the application, representing the game state. 
+ * The model will keep all of the data for the game, and it will notify observers when 
+ * it changes state. 
  * 
  * Responsibilities:
  * - Maintains the list of players and their scores.
- * - Tracks the current player's turn.
- * - Handles dice rolls and determines if the game is won.
- * - Resets the game state when necessary.
- * 
- * Dependencies:
- * - Player: Represents individual players in the game.
- * - Dice: Represents the dice used for rolling in the game.
+ * - Notifies observers that state changes have taken place.
  * 
  * <p>Wyatt McCurdy</p>
  * <p>Login ID: wyatt.mccurdy@maine.edu</p>
@@ -28,7 +23,6 @@ public class BulldogGameModel {
     private static final int WINNING_SCORE = 104;
     private List<Player> players;
     private int currentPlayerIndex;
-    private Dice dice;
     private boolean gameWon;
 
     /**
@@ -37,7 +31,6 @@ public class BulldogGameModel {
      */
     public BulldogGameModel() {
         players = new ArrayList<>();
-        dice = new Dice(6);
         gameWon = false;
     }
 
@@ -73,15 +66,6 @@ public class BulldogGameModel {
      */
     public void nextPlayer() {
         currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
-    }
-
-    /**
-     * Rolls the dice and returns the result.
-     * 
-     * @return The result of the dice roll.
-     */
-    public int rollDice() {
-        return dice.roll();
     }
 
     /**

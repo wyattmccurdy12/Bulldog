@@ -35,7 +35,7 @@ public class WimpPlayer extends Player {
      * @param roll the value of the roll
      * @return boolean result of the roll evaluation
      */
-    public boolean evaulate_roll(int roll) {
+    public boolean evaluate_roll(int roll) {
         // update score
         setTurnScore(getTurnScore() + roll);
 

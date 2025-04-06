@@ -97,6 +97,6 @@ public abstract class Player {
      * @param roll the value of the roll
      * @return boolean result of the roll evaluation
      */
-    public abstract boolean evaulate_roll(int roll);
+    public abstract boolean evaluate_roll(int roll);
 
 }
