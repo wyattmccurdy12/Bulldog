@@ -1,19 +1,3 @@
-/**
- * The BulldogGameModel class represents the Model in the MVC architecture
- * for the Bulldog Game. It is the data portion of the application, representing the game state. 
- * The model will keep all of the data for the game, and it will notify observers when 
- * it changes state. 
- * 
- * Responsibilities:
- * - Maintains the list of players and their scores.
- * - Notifies observers that state changes have taken place.
- * 
- * <p>Wyatt McCurdy</p>
- * <p>Login ID: wyatt.mccurdy@maine.edu</p>
- * <p>COS 420/520, Spring 2025</p>
- * 
- * Written with help from Github Copilot (GPT-4o)
- */
 package src;
 
 import java.util.ArrayList;
@@ -22,6 +6,7 @@ import java.util.List;
 public class BulldogGameModel {
     private List<Player> players;
     private int currentPlayerIndex;
+    private List<GameObserver> observers; // List of observers
 
     /**
      * Constructs a new BulldogGameModel with an empty list of players,
@@ -29,6 +14,7 @@ public class BulldogGameModel {
      */
     public BulldogGameModel() {
         players = new ArrayList<>();
+        observers = new ArrayList<>(); // Initialize the observers list
     }
 
     /**
@@ -38,6 +24,7 @@ public class BulldogGameModel {
      */
     public void addPlayer(Player player) {
         players.add(player);
+        notifyObservers(); // Notify observers of the change
     }
 
     /**
@@ -63,8 +50,8 @@ public class BulldogGameModel {
      */
     public void nextPlayer() {
         currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
+        notifyObservers(); // Notify observers of the change
     }
-
 
     /**
      * Resets the game state, including player scores and turn order.
@@ -75,5 +62,33 @@ public class BulldogGameModel {
             player.setTurnScore(0);
         }
         currentPlayerIndex = 0;
+        notifyObservers(); // Notify observers of the change
+    }
+
+    /**
+     * Registers an observer to be notified of game state changes.
+     * 
+     * @param observer The observer to register.
+     */
+    public void addObserver(GameObserver observer) {
+        observers.add(observer);
+    }
+
+    /**
+     * Unregisters an observer so it no longer receives notifications.
+     * 
+     * @param observer The observer to unregister.
+     */
+    public void removeObserver(GameObserver observer) {
+        observers.remove(observer);
+    }
+
+    /**
+     * Notifies all registered observers of a change in the game state.
+     */
+    private void notifyObservers() {
+        for (GameObserver observer : observers) {
+            observer.update();
+        }
     }
 }
