@@ -20,10 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BulldogGameModel {
-    private static final int WINNING_SCORE = 104;
     private List<Player> players;
     private int currentPlayerIndex;
-    private boolean gameWon;
 
     /**
      * Constructs a new BulldogGameModel with an empty list of players,
@@ -31,7 +29,6 @@ public class BulldogGameModel {
      */
     public BulldogGameModel() {
         players = new ArrayList<>();
-        gameWon = false;
     }
 
     /**
@@ -68,24 +65,6 @@ public class BulldogGameModel {
         currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
     }
 
-    /**
-     * Checks if the game has been won by the current player.
-     * 
-     * @return True if the game is won, false otherwise.
-     */
-    public boolean isGameWon() {
-        return gameWon;
-    }
-
-    /**
-     * Checks if the current player has reached the winning score
-     * and updates the game state accordingly.
-     */
-    public void checkWin() {
-        if (getCurrentPlayer().getScore() >= WINNING_SCORE) {
-            gameWon = true;
-        }
-    }
 
     /**
      * Resets the game state, including player scores and turn order.
@@ -95,7 +74,6 @@ public class BulldogGameModel {
             player.setScore(0);
             player.setTurnScore(0);
         }
-        gameWon = false;
         currentPlayerIndex = 0;
     }
 }

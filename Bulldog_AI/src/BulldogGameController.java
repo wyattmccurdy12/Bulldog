@@ -33,6 +33,7 @@ public class BulldogGameController {
         this.view = view;
         this.referee = new Referee(model); // Initialize the Referee
         selectedPlayers = new HashMap<>();
+        startGame();
     }
 
     /**
