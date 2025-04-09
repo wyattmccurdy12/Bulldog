@@ -12,7 +12,6 @@ package src;
  * Written with help from Github Copilot (GPT-4o)
  */
 public class UniquePlayerHuman extends Player {
-    private int num_rolls = 0;
 
     /**
      * Constructor: Creates a default UniquePlayerHuman.
@@ -31,23 +30,24 @@ public class UniquePlayerHuman extends Player {
     }
 
     /**
-     * This method will decide whether or not to continue rolling based on a unique strategy (roll four times every turn).
+     * This method will take a turn for the UniquePlayerHuman.
      * 
-     * @param roll the value of the roll
-     * @return boolean result of the roll evaluation
+     * @param dice The dice object used for rolling
+     * @return int The score for the turn
      */
-    public boolean evaluate_roll(int roll) {
-        num_rolls = num_rolls + 1;
-        // update score
-        setTurnScore(getTurnScore() + roll);
-
-        if (roll == 6) {
-            setTurnScore(0);
-            return false;
+    @Override
+    public int play(Dice dice) {
+        int turnScore = 0;
+        int rolls = 0;
+        while (rolls < 4) { // Roll exactly four times
+            int roll = dice.roll();
+            if (roll == 6) {
+                return 0; // Turn ends with no points
+            }
+            turnScore += roll;
+            rolls++;
         }
-        else if (num_rolls > 4) {
-            return false;
-        }
-        return true;
+        setScore(getScore() + turnScore); // Update the player's total score
+        return turnScore;
     }
 }

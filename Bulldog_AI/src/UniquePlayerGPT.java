@@ -30,21 +30,27 @@ public class UniquePlayerGPT extends Player {
     }
 
     /**
-     * This method will decide whether or not to continue rolling based on a unique strategy.
+     * This method implements the unique logic for the player's turn using the Dice object.
      * 
-     * @param roll the value of the roll
-     * @return boolean result of the roll evaluation
+     * @param dice the Dice object used for rolling
+     * @return int the updated score after the turn
      */
-    public boolean evaluate_roll(int roll) {
-        // update score
-        setTurnScore(getTurnScore() + roll);
+    @Override
+    public int play(Dice dice) {
+        int turnScore = 0;
+        while (true) {
+            int roll = dice.roll();
+            if (roll == 6) {
+                return 0; // Turn ends with no points
+            }
+            turnScore += roll;
 
-        if (roll == 6) {
-            setTurnScore(0);
-            return false;
-        } else if (getTurnScore() >= 10 || roll >= 4) {
-            return false;
+            // UniquePlayerGPT logic: Stop rolling if turn score >= 10 or roll >= 4
+            if (turnScore >= 10 || roll >= 4) {
+                break;
+            }
         }
-        return true;
+        setScore(getScore() + turnScore); // Update the player's total score
+        return turnScore;
     }
 }

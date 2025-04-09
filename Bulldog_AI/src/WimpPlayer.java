@@ -30,19 +30,18 @@ public class WimpPlayer extends Player {
     }
 
     /**
-     * This method will decide whether or not to continue rolling based on the WimpPlayer strategy (roll once).
+     * This method implements the WimpPlayer's logic for playing a turn.
      * 
-     * @param roll the value of the roll
-     * @return boolean result of the roll evaluation
+     * @param dice the Dice object used for rolling
+     * @return int result of the turn score
      */
-    public boolean evaluate_roll(int roll) {
-        // update score
-        setTurnScore(getTurnScore() + roll);
-
+    @Override
+    public int play(Dice dice) {
+        int roll = dice.roll();
         if (roll == 6) {
-            setTurnScore(0);
+            return 0; // Turn ends with no points
         }
-
-        return false; // WimpPlayer always stops after one roll
+        setScore(getScore() + roll); // Update the player's total score
+        return roll; // Return the roll as the turn score
     }
 }

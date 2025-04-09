@@ -1,86 +1,39 @@
 package src;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 public class Referee {
 
-    private BulldogGameModel model;
+    private int winningScore;
+    private Dice dice;
 
-    /**
-     * Constructs a Referee with the specified game model.
-     * 
-     * @param model The BulldogGameModel instance representing the game logic.
-     */
-    public Referee(BulldogGameModel model) {
-        this.model = model;
+    public Referee(int winningScore) {
+        this.winningScore = winningScore;
+        this.dice = new Dice(6); // Initialize a six-sided die
     }
 
     /**
-     * Starts the game by resetting the model and adding players.
+     * Determines whether the game should continue based on the current player's score.
      * 
-     * @param players The list of players to add to the game.
+     * @param currentPlayerScore The score of the current player.
+     * @return True if the game should continue, false otherwise.
      */
-    public void startGame(List<Player> players) {
-        model.resetGame();
-        for (Player player : players) {
-            model.addPlayer(player);
-        }
+    public boolean shouldContinueGame(int currentPlayerScore) {
+        return currentPlayerScore < winningScore; // Continue if score is below the winning score
     }
 
     /**
-     * Handles the current player's turn, including dice rolls and turn evaluation.
+     * Hosts a round of the game, asking each player to take a turn and checking if a player has won.
      * 
-     * @return A message summarizing the turn's outcome.
+     * @param model The game model containing players and game state.
+     * @return True if a player has won, false otherwise.
      */
-    public String continueTurn() {
-        Player currentPlayer = model.getCurrentPlayer();
-        StringBuilder turnSummary = new StringBuilder();
-
-        while (!(currentPlayer instanceof HumanPlayer)) {
-            int roll = model.rollDice();
-            turnSummary.append(currentPlayer.getName()).append(" rolled a ").append(roll).append("\n");
-
-            if (!currentPlayer.evaluate_roll(roll)) {
-                turnSummary.append(currentPlayer.getName()).append("'s turn ends.\n");
-                break;
-            }
-
-            turnSummary.append(currentPlayer.getName()).append("'s turn score is ").append(currentPlayer.getTurnScore()).append("\n");
-        }
-
-        return turnSummary.toString();
-    }
-
-    /**
-     * Ends the current player's turn and checks for a winner.
-     * 
-     * @return A message summarizing the end of the turn or the game's outcome.
-     */
-    public String endTurn() {
-        Player currentPlayer = model.getCurrentPlayer();
-        currentPlayer.setTurnScore(0);
-        model.checkWin();
-
-        if (model.isGameWon()) {
-            return currentPlayer.getName() + " has won the game with a score of " + currentPlayer.getScore() + "!\n";
-        }
-
-        model.nextPlayer();
-        return model.getCurrentPlayer().getName() + "'s turn:\n";
-    }
-
-    /**
-     * Retrieves the current scoreboard.
-     * 
-     * @return A map of player names to their scores.
-     */
-    public Map<String, Integer> getScoreboard() {
-        Map<String, Integer> playerScores = new HashMap<>();
+    public boolean hostRound(BulldogGameModel model) {
         for (Player player : model.getPlayers()) {
-            playerScores.put(player.getName(), player.getScore());
+            int turnScore = player.play(dice); // Use the play() method instead of take_turn
+
+            if (player.getScore() >= winningScore) {
+                return true; // Player has won, stop the round
+            }
         }
-        return playerScores;
+        return false; // No player has won, continue the game
     }
 }

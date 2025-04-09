@@ -13,8 +13,6 @@ package src;
  */
 public class RandomPlayer extends Player {
 
-    private Dice dice;
-
     /**
      * Constructor: Creates a default RandomPlayer.
      */
@@ -29,33 +27,24 @@ public class RandomPlayer extends Player {
      */
     public RandomPlayer(String name) {
         super(name);
-        this.dice = new Dice(2); // Initialize a two-sided dice for 50/50 chance
     }
 
     /**
-     * This method will decide whether or not to continue rolling based on a random decision.
+     * This method allows the RandomPlayer to play a turn using the dice.
      * 
-     * @param roll the value of the roll
-     * @return boolean result of the roll evaluation
+     * @param dice The dice object used for rolling.
+     * @return int The turn score after the player finishes their turn.
      */
-    public boolean evaluate_roll(int roll) {
-
-        // Immediatly add the player's roll to the turn score
-        setTurnScore(getTurnScore() + roll);
-
-        boolean continuing = true;
-
-        if (roll == 6) {
-            setTurnScore(0);
-            return false;
-        } else {
-            continuing = dice.roll() == 1; // 50/50 chance to continue rolling
+    @Override
+    public int play(Dice dice) {
+        int turnScore = 0;
+        while (Math.random() < 0.5) { // 50/50 chance of rolling again
+            int roll = dice.roll();
+            if (roll == 6) {
+                return 0; // Turn ends with no points
+            }
+            turnScore += roll;
         }
-
-        if (!continuing) {
-            return false;
-        } else {
-            return true;
-        }
+        return turnScore;
     }
 }

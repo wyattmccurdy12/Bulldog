@@ -21,11 +21,13 @@ public class BulldogGame {
     /**
      * The main method serves as the entry point for the application.
      * It initializes the Model, View, and Controller components.
-
      */
     public static void main(String[] args) {
         BulldogGameModel model = new BulldogGameModel();
         BulldogGameView view = new BulldogGameView();
-        new BulldogGameController(model, view);
+        BulldogGameController controller = new BulldogGameController(model, view); // Create the controller
+        view.registerController(controller);
+
+        model.addObserver(controller); // Add the controller as an observer to the model
     }
 }

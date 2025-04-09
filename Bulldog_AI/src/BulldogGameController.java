@@ -1,8 +1,10 @@
 package src;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
+import javax.swing.JCheckBox;
 
 /**
  * The BulldogGameController class is responsible for managing the flow of the Bulldog game.
@@ -15,12 +17,11 @@ import java.util.Map;
  * 
  * Written with help from Github Copilot (GPT-4o)
  */
-public class BulldogGameController {
+public class BulldogGameController implements GameObserver {
 
     private BulldogGameModel model;
     private BulldogGameView view;
     private Referee referee;
-    private Map<String, Player> selectedPlayers;
 
     /**
      * Constructs a new {@code BulldogGameController} with the specified model and view.
@@ -31,68 +32,87 @@ public class BulldogGameController {
     public BulldogGameController(BulldogGameModel model, BulldogGameView view) {
         this.model = model;
         this.view = view;
-        this.referee = new Referee(model); // Initialize the Referee
-        selectedPlayers = new HashMap<>();
-        startGame();
+        this.referee = new Referee(model.getWinningScore()); // Initialize the Referee without direct model interaction
+        // startGame();
     }
 
     /**
-     * Starts the game by initializing the referee, displaying the list of players,
-     * updating the scoreboard, and beginning the first player's turn.
+     * Starts the game by repeatedly asking the referee to host rounds
+     * until the game is won. Updates the view accordingly.
      */
-    private void startGame() {
-        referee.startGame(new ArrayList<>(selectedPlayers.values()));
+    public void startGame() {
+        boolean gameWon = false;
+
         view.getTextArea().append("\nThe game has started! Players are:\n");
         for (Player player : model.getPlayers()) {
             view.getTextArea().append(player.getName() + "\n");
         }
-        updateScoreboard();
-        view.getTextArea().append("\n" + model.getCurrentPlayer().getName() + "'s turn:\n");
-        continueTurn();
-    }
 
-    /**
-     * Handles the current player's turn by simulating dice rolls and evaluating the results.
-     * The turn continues until the player decides to stop rolling.
-     */
-    private void continueTurn() {
-        Player currentPlayer = model.getCurrentPlayer();
-        boolean continueRolling;
-
-        do {
-            int roll = rollDice(); // Simulate a dice roll
-            view.getTextArea().append("\n" + currentPlayer.getName() + " rolled a " + roll + ".\n");
-
-            continueRolling = currentPlayer.evaluate_roll(roll); // Delegate decision-making to the player
-            if (!continueRolling) {
-                view.getTextArea().append("\n" + currentPlayer.getName() + " ended their turn.\n");
-            }
-        } while (continueRolling);
-
-        endTurn();
-    }
-
-    /**
-     * Ends the current player's turn, checks if the game is won, and either updates the scoreboard
-     * or continues to the next player's turn.
-     */
-    private void endTurn() {
-        String endTurnMessage = referee.endTurn();
-        view.getTextArea().append(endTurnMessage);
-
-        if (model.isGameWon()) {
-            updateScoreboard();
-            return;
+        while (!gameWon) {
+            gameWon = referee.hostRound(model); // Ask the referee to host a round
         }
 
-        updateScoreboard();
-        continueTurn();
+        Player winner = model.getCurrentPlayer(); // Get the winning player
+        view.getTextArea().append("\nGame over! " + winner.getName() + " wins with a score of " + winner.getScore() + "!\n");
+        System.out.println("Game has successfully started.");
     }
 
     /**
-     * Updates the scoreboard in the view with the latest scores from the referee.
+     * Called when the model notifies its observers of a change.
+     * This method queries the referee and updates the view.
      */
-    private void updateScoreboard() {
-        view.updateScoreboard(referee.getScoreboard());
+    @Override
+    public void update() {
+        Player currentPlayer = model.getCurrentPlayer(); // Get the current player from the model
+        int currentPlayerScore = currentPlayer.getScore(); // Get the current player's score
+
+
+        view.getTextArea().append("\nCurrent player: " + currentPlayer.getName() + "\n");
+        view.updateScoreboard(getPlayerScores()); // Update the scoreboard in the view
+    }
+
+    /**
+     * Retrieves player names and scores, and returns them as a Map<String, Integer>.
+     *
+     * @return a map containing player names as keys and their scores as values
+     */
+    public Map<String, Integer> getPlayerScores() {
+        Map<String, Integer> playerScores = new HashMap<>();
+        for (Player player : model.getPlayers()) {
+            playerScores.put(player.getName(), player.getScore());
+        }
+        return playerScores;
+    }
+
+    /**
+     * Loads players into the model based on the selected checkboxes in the view.
+     */
+    public void loadPlayers() {
+        Map<String, JCheckBox> checkBoxes = view.getPlayerCheckBoxes();
+        List<Player> players = new ArrayList<>();
+
+        if (checkBoxes.get("WimpPlayer").isSelected()) {
+            players.add(new WimpPlayer());
+            System.out.println("wimp has been added");
+        }
+        if (checkBoxes.get("RandomPlayer").isSelected()) {
+            players.add(new RandomPlayer());
+            System.out.println("random has been added");
+        }
+        if (checkBoxes.get("FifteenPlayer").isSelected()) {
+            players.add(new FifteenPlayer());
+            System.out.println("fifteen has been added");
+        }
+        if (checkBoxes.get("UniquePlayerGPT").isSelected()) {
+            players.add(new UniquePlayerGPT());
+            System.out.println("uniquegpt has been added");
+        }
+        if (checkBoxes.get("UniquePlayerHuman").isSelected()) {
+            players.add(new UniquePlayerHuman());
+            System.out.println("unieuqhuman has been added");
+        }
+
+        model.initializePlayers(players); // Load the selected players into the model
+        System.out.println("players have been initd");
     }
 }

@@ -34,22 +34,24 @@ public class FifteenPlayer extends Player {
     }
 
     /**
-     * Evaluates the roll and decides whether to continue rolling.
+     * Implements the turn logic for FifteenPlayer.
      * 
-     * @param roll the roll provided by the game
-     * @return true if the player should continue rolling, false otherwise
+     * @param dice the Dice object used for rolling
+     * @return the turn score after the rolls
      */
-    public boolean evaluate_roll(int roll) {
-        // update score
-        setTurnScore(getTurnScore() + roll);
+    @Override
+    public int play(Dice dice) {
+        while (getTurnScore() < 15) {
+            int roll = dice.roll();
+            setTurnScore(getTurnScore() + roll);
 
-        if (roll == 6) {
-            setTurnScore(0);
-            return false;
-        } else if (getTurnScore() >= 15) {
-            setScore(getScore() + getTurnScore()); // Update overall score
-            return false;
+            if (roll == 6) {
+                setTurnScore(0);
+                return 0; // Turn ends with no points
+            }
         }
-        return true;
+
+        setScore(getScore() + getTurnScore()); // Add turn score to total score
+        return getTurnScore(); // Return the turn score
     }
 }

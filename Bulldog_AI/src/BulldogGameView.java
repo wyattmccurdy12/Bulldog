@@ -3,8 +3,11 @@ package src;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.awt.event.ActionListener;
 
 public class BulldogGameView extends JFrame {
     private JTextArea textArea;
@@ -19,12 +22,23 @@ public class BulldogGameView extends JFrame {
     private JTable scoreboardTable;
     private DefaultTableModel scoreboardModel;
     private JLabel welcomeMessage;
+    private BulldogGameController controller;
 
     /**
      * Constructs a new BulldogGameView and initializes the user interface.
      */
     public BulldogGameView() {
         setupUI();
+    }
+
+    /**
+     * Registers the controller to be used by the view.
+     * 
+     * @param controller The controller to be registered.
+     */
+    public void registerController(BulldogGameController controller) {
+        this.controller = controller;
+        System.out.println("Controller has been set.");
     }
 
     /**
@@ -224,5 +238,30 @@ public class BulldogGameView extends JFrame {
      */
     public JTable getScoreboardTable() {
         return scoreboardTable;
+    }
+
+    /**
+     * Adds a listener to the submit button.
+     * 
+     * @param listener The ActionListener to add.
+     */
+    public void addSubmitButtonListener(ActionListener listener) {
+        submitButton.addActionListener(e -> {
+            listener.actionPerformed(e); // Notify the listener
+            controller.loadPlayers(); // Ensure players are loaded into the model
+            textArea.append("\nPlayers have been added. Ready to start the game.\n"); // Provide feedback
+        });
+    }
+
+    /**
+     * Adds a listener to the start game button.
+     * 
+     * @param listener The ActionListener to add.
+     */
+    public void addStartGameButtonListener(ActionListener listener) {
+        startGameButton.addActionListener(e -> {
+            // listener.actionPerformed(e);
+            controller.startGame();
+        });
     }
 }
