@@ -120,8 +120,9 @@ public class BulldogGameModel implements GameObserver {
      * Advances to the next player and notifies observers.
      */
     public void nextPlayer() {
-        currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
         notifyObservers();
+        currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
+        
     }
 
     /**

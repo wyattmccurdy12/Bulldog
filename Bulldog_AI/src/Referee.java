@@ -28,6 +28,7 @@ public class Referee {
      */
     public boolean hostRound(BulldogGameModel model) {
         for (Player player : model.getPlayers()) {
+            
             int turnScore = player.play(dice); // Use the play() method instead of take_turn
 
             if (player.getScore() >= winningScore) {

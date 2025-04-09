@@ -37,14 +37,16 @@ public class RandomPlayer extends Player {
      */
     @Override
     public int play(Dice dice) {
-        int turnScore = 0;
+        setTurnScore(0); // Reset turn score at the start of the turn
         while (Math.random() < 0.5) { // 50/50 chance of rolling again
             int roll = dice.roll();
             if (roll == 6) {
+                setTurnScore(0); // Reset turn score if a 6 is rolled
                 return 0; // Turn ends with no points
             }
-            turnScore += roll;
+            setTurnScore(getTurnScore() + roll); // Update turn score
         }
-        return turnScore;
+        setScore(getScore() + getTurnScore()); // Add turn score to total score
+        return getTurnScore(); // Return the turn score
     }
 }

@@ -14,6 +14,7 @@
  * 
  * Written with help from Github Copilot (GPT-4o)
  */
+
 package src;
 
 public class BulldogGame {

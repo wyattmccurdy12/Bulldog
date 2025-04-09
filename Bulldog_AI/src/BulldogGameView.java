@@ -3,9 +3,9 @@ package src;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.util.List;
+
 import java.util.Map;
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.awt.event.ActionListener;
 
@@ -50,17 +50,25 @@ public class BulldogGameView extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // Text area for displaying game messages
+        setupTextArea();
+        setupPlayerSelectionPanel();
+        setupCenterPanel();
+        setupButtonPanel();
+
+        setVisible(true);
+    }
+
+    private void setupTextArea() {
         textArea = new JTextArea();
         textArea.setEditable(false);
         add(new JScrollPane(textArea), BorderLayout.EAST);
+    }
 
-        // Panel for player selection checkboxes
+    private void setupPlayerSelectionPanel() {
         playerSelectionPanel = new JPanel();
         playerSelectionPanel.setLayout(new GridLayout(7, 1));
         playerSelectionPanel.setBorder(BorderFactory.createTitledBorder("Player Selection"));
 
-        // Add checkboxes for player types
         playerCheckBoxes = new HashMap<>();
         addPlayerCheckBox("WimpPlayer");
         addPlayerCheckBox("RandomPlayer");
@@ -69,44 +77,57 @@ public class BulldogGameView extends JFrame {
         addPlayerCheckBox("UniquePlayerGPT");
         addPlayerCheckBox("UniquePlayerHuman");
 
-        // Submit button for player selection
         submitButton = new JButton("Submit");
+        submitButton.addActionListener(e -> {
+            if (controller != null) {
+                controller.loadPlayers();
+                textArea.append("\nPlayers have been added. Ready to start the game.\n");
+            } else {
+                textArea.append("\nController is not set. Cannot load players.\n");
+            }
+        });
         playerSelectionPanel.add(submitButton);
         add(playerSelectionPanel, BorderLayout.WEST);
+    }
 
-        // Center panel for dynamic game content
+    private void setupCenterPanel() {
         centerPanel = new JPanel();
         centerPanel.setLayout(new BorderLayout());
         centerPanel.setBorder(BorderFactory.createTitledBorder("Game Info"));
 
-        // Welcome message at the top of the center panel
         welcomeMessage = new JLabel("Welcome to the Bulldog Game! Select players to begin.");
         welcomeMessage.setHorizontalAlignment(SwingConstants.CENTER);
         centerPanel.add(welcomeMessage, BorderLayout.NORTH);
 
-        // Initialize the scoreboard table
         scoreboardModel = new DefaultTableModel(new String[] { "Player", "Score" }, 0);
         scoreboardTable = new JTable(scoreboardModel);
         JScrollPane scoreboardScrollPane = new JScrollPane(scoreboardTable);
         centerPanel.add(scoreboardScrollPane, BorderLayout.CENTER);
 
         add(centerPanel, BorderLayout.CENTER);
+    }
 
-        // Buttons for game actions
+    private void setupButtonPanel() {
         startGameButton = new JButton("Start Game");
+        startGameButton.addActionListener(e -> {
+            if (controller != null) {
+                controller.startGame();
+                textArea.append("\nGame has started. Good luck!\n");
+            } else {
+                textArea.append("\nController is not set. Cannot start the game.\n");
+            }
+        });
+
         rollAgainButton = new JButton("Roll Again");
         endTurnButton = new JButton("End Turn");
         rollAgainButton.setEnabled(false);
         endTurnButton.setEnabled(false);
 
-        // Panel for action buttons
         buttonPanel = new JPanel();
         buttonPanel.add(startGameButton);
         buttonPanel.add(rollAgainButton);
         buttonPanel.add(endTurnButton);
         add(buttonPanel, BorderLayout.SOUTH);
-
-        setVisible(true);
     }
 
     /**
@@ -240,28 +261,4 @@ public class BulldogGameView extends JFrame {
         return scoreboardTable;
     }
 
-    /**
-     * Adds a listener to the submit button.
-     * 
-     * @param listener The ActionListener to add.
-     */
-    public void addSubmitButtonListener(ActionListener listener) {
-        submitButton.addActionListener(e -> {
-            listener.actionPerformed(e); // Notify the listener
-            controller.loadPlayers(); // Ensure players are loaded into the model
-            textArea.append("\nPlayers have been added. Ready to start the game.\n"); // Provide feedback
-        });
-    }
-
-    /**
-     * Adds a listener to the start game button.
-     * 
-     * @param listener The ActionListener to add.
-     */
-    public void addStartGameButtonListener(ActionListener listener) {
-        startGameButton.addActionListener(e -> {
-            // listener.actionPerformed(e);
-            controller.startGame();
-        });
-    }
 }

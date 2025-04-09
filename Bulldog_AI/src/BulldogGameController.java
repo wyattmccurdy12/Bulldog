@@ -41,15 +41,20 @@ public class BulldogGameController implements GameObserver {
      * until the game is won. Updates the view accordingly.
      */
     public void startGame() {
+
         boolean gameWon = false;
 
+        System.out.println("getting players...");
         view.getTextArea().append("\nThe game has started! Players are:\n");
         for (Player player : model.getPlayers()) {
             view.getTextArea().append(player.getName() + "\n");
+            System.out.println("Got player: " + player.getName());
         }
 
         while (!gameWon) {
             gameWon = referee.hostRound(model); // Ask the referee to host a round
+
+            
         }
 
         Player winner = model.getCurrentPlayer(); // Get the winning player
@@ -63,12 +68,13 @@ public class BulldogGameController implements GameObserver {
      */
     @Override
     public void update() {
-        Player currentPlayer = model.getCurrentPlayer(); // Get the current player from the model
-        int currentPlayerScore = currentPlayer.getScore(); // Get the current player's score
 
-
-        view.getTextArea().append("\nCurrent player: " + currentPlayer.getName() + "\n");
         view.updateScoreboard(getPlayerScores()); // Update the scoreboard in the view
+
+        // display the current player's score in the text area
+        Player currentPlayer = model.getCurrentPlayer();
+        view.getTextArea().append("\nCurrent player: " + currentPlayer.getName() + " with score: " + currentPlayer.getScore() + "\n");
+
     }
 
     /**
