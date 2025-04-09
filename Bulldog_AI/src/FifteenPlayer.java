@@ -42,7 +42,7 @@ public class FifteenPlayer extends Player {
     @Override
     public int play(Dice dice) {
         while (getTurnScore() < 15) {
-            int roll = dice.roll();
+            int roll = roll(dice);
             setTurnScore(getTurnScore() + roll);
 
             if (roll == 6) {

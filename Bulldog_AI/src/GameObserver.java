@@ -2,7 +2,7 @@ package src;
 
 /**
  * The GameObserver interface should be implemented by any class
- * that wants to observe changes in the BulldogGameModel.
+ * that wants to observe changes.
  */
 public interface GameObserver {
     /**

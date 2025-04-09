@@ -27,8 +27,9 @@ public class BulldogGame {
         BulldogGameModel model = new BulldogGameModel();
         BulldogGameView view = new BulldogGameView();
         BulldogGameController controller = new BulldogGameController(model, view); // Create the controller
-        view.registerController(controller);
 
+        view.registerController(controller);
         model.addObserver(controller); // Add the controller as an observer to the model
+        
     }
 }

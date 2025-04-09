@@ -39,7 +39,7 @@ public class RandomPlayer extends Player {
     public int play(Dice dice) {
         setTurnScore(0); // Reset turn score at the start of the turn
         while (Math.random() < 0.5) { // 50/50 chance of rolling again
-            int roll = dice.roll();
+            int roll = roll(dice);
             if (roll == 6) {
                 setTurnScore(0); // Reset turn score if a 6 is rolled
                 return 0; // Turn ends with no points

@@ -14,11 +14,16 @@ import java.util.List;
  * 
  * Written with help from Github Copilot (GPT-4o)
  */
-public class BulldogGameModel implements GameObserver {
+public class BulldogGameModel {
     private List<Player> players;
-    private int currentPlayerIndex;
+
     private List<GameObserver> observers; // List of observers
     private static final int WINNING_SCORE = 104; // Define the winning score in the model
+
+    // Add some attributes: current player name, list of current player roll values, current player score
+    private String currentPlayerName;
+    private List<Integer> currentPlayerRolls = new ArrayList<>();
+    private int currentPlayerScore = 0;
 
     /**
      * Constructs a new BulldogGameModel with an empty list of players,
@@ -45,9 +50,6 @@ public class BulldogGameModel implements GameObserver {
      */
     public void initializePlayers(List<Player> players) {
         this.players = players;
-        for (Player player : players) {
-            player.addObserver(this); // Register the model as an observer
-        }
         notifyObservers(); // Notify observers of the initial state
     }
 
@@ -61,15 +63,6 @@ public class BulldogGameModel implements GameObserver {
     }
 
     /**
-     * Returns the current player whose turn it is.
-     * 
-     * @return The Player instance representing the current player.
-     */
-    public Player getCurrentPlayer() {
-        return players.get(currentPlayerIndex);
-    }
-
-    /**
      * Resets the game state, including player scores and turn order.
      */
     public void resetGame() {
@@ -77,7 +70,6 @@ public class BulldogGameModel implements GameObserver {
             player.setScore(0);
             player.setTurnScore(0);
         }
-        currentPlayerIndex = 0;
         notifyObservers(); // Notify observers of the change
     }
 
@@ -108,22 +100,7 @@ public class BulldogGameModel implements GameObserver {
         }
     }
 
-    /**
-     * Updates the model when notified by an observed subject.
-     */
-    @Override
-    public void update() {
-        notifyObservers(); // Notify the model's observers when a player changes state
-    }
 
-    /**
-     * Advances to the next player and notifies observers.
-     */
-    public void nextPlayer() {
-        notifyObservers();
-        currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
-        
-    }
 
     /**
      * Returns the winning score for the game.
@@ -132,5 +109,21 @@ public class BulldogGameModel implements GameObserver {
      */
     public int getWinningScore() {
         return WINNING_SCORE; // Provide access to the winning score
+    }
+
+    /**
+     * Updates the current player's name, rolls, and score.
+     * 
+     * @param name  The name of the current player.
+     * @param rolls The list of roll values for the current player.
+     * @param score The current score of the player.
+     */
+    public void updateCurrentPlayer(String name, List<Integer> rolls, int score) {
+        this.currentPlayerName = name;
+        this.currentPlayerRolls = new ArrayList<>(rolls); // Create a copy of the rolls list
+        this.currentPlayerScore = score;
+
+        notifyObservers();
+
     }
 }

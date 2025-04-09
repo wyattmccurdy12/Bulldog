@@ -25,7 +25,11 @@ public abstract class Player {
 
     private int turn_score; // The score earned by the player during the turn
 
+    BulldogGameModel model;
+
     private List<GameObserver> observers = new ArrayList<>(); // List of observers
+
+    private List<Integer> currentTurnRolls = new ArrayList<>();
     
     /**
      * Constructor: Player
@@ -34,9 +38,10 @@ public abstract class Player {
      * 
      * @param name the name of the Player being created
      */
-    public Player(String name) {
+    public Player(String name, BulldogGameModel model) {
         this.name = name;
         this.score = 0;
+        this.model = model;
     }
     
     /**
@@ -137,6 +142,28 @@ public abstract class Player {
      * @param dice the Dice object used in the game
      * @return int result of the play
      */
-    public abstract int play(Dice dice);
+    public int play(Dice dice) {
+        List<Integer> my_rolling_results = implementRollingLogic(dice);
+
+        int my_rolling_result = 0;
+        for (int result : my_rolling_results) {
+            my_rolling_result = my_rolling_result + result;
+        }
+
+        // Update current player information for the model
+        model.updateCurrentPlayer(name, my_rolling_results, my_rolling_result);
+
+        return my_rolling_result;
+    }
+
+    public abstract List<Integer> implementRollingLogic(Dice dice);
+
+    protected int roll(Dice dice) {
+        int my_roll = dice.roll();
+        
+        notifyObservers();
+
+        return my_roll;
+    }
 
 }

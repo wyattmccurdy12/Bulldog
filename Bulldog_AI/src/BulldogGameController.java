@@ -33,7 +33,6 @@ public class BulldogGameController implements GameObserver {
         this.model = model;
         this.view = view;
         this.referee = new Referee(model.getWinningScore()); // Initialize the Referee without direct model interaction
-        // startGame();
     }
 
     /**
@@ -53,13 +52,20 @@ public class BulldogGameController implements GameObserver {
 
         while (!gameWon) {
             gameWon = referee.hostRound(model); // Ask the referee to host a round
-
-            
         }
 
-        Player winner = model.getCurrentPlayer(); // Get the winning player
+        Player winner = retrieveWinner();
         view.getTextArea().append("\nGame over! " + winner.getName() + " wins with a score of " + winner.getScore() + "!\n");
         System.out.println("Game has successfully started.");
+    }
+
+    private Player retrieveWinner() {
+        for (Player player : model.getPlayers()) {
+            if (player.getScore() >= model.getWinningScore()) {
+                return player;
+            }
+        }
+        return null;
     }
 
     /**
@@ -68,12 +74,10 @@ public class BulldogGameController implements GameObserver {
      */
     @Override
     public void update() {
+        // the update function must also append 
 
         view.updateScoreboard(getPlayerScores()); // Update the scoreboard in the view
 
-        // display the current player's score in the text area
-        Player currentPlayer = model.getCurrentPlayer();
-        view.getTextArea().append("\nCurrent player: " + currentPlayer.getName() + " with score: " + currentPlayer.getScore() + "\n");
 
     }
 
@@ -118,7 +122,7 @@ public class BulldogGameController implements GameObserver {
             System.out.println("unieuqhuman has been added");
         }
 
-        model.initializePlayers(players); // Load the selected players into the model
+        // model.initializePlayers(players); // Load the selected players into the model/ JUST USE ADD PLAYER
         System.out.println("players have been initd");
     }
 }

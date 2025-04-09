@@ -112,7 +112,6 @@ public class BulldogGameView extends JFrame {
         startGameButton.addActionListener(e -> {
             if (controller != null) {
                 controller.startGame();
-                textArea.append("\nGame has started. Good luck!\n");
             } else {
                 textArea.append("\nController is not set. Cannot start the game.\n");
             }
@@ -260,5 +259,6 @@ public class BulldogGameView extends JFrame {
     public JTable getScoreboardTable() {
         return scoreboardTable;
     }
+    
 
 }
