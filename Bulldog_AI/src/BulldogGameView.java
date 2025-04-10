@@ -80,6 +80,7 @@ public class BulldogGameView extends JFrame {
         submitButton = new JButton("Submit");
         submitButton.addActionListener(e -> {
             if (controller != null) {
+                System.out.println("adding players now...");
                 controller.loadPlayers();
                 textArea.append("\nPlayers have been added. Ready to start the game.\n");
             } else {

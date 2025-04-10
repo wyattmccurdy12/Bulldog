@@ -1,4 +1,8 @@
 package src;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * WimpPlayer class: extends Player class
  * A WimpPlayer always rolls the die once.
@@ -15,8 +19,8 @@ public class WimpPlayer extends Player {
      * Constructor: WimpPlayer
      * Purpose: Create a default WimpPlayer
      */
-    public WimpPlayer() {
-        this("Wimp");
+    public WimpPlayer(BulldogGameModel model) {
+        this("Wimp", model);
     }
 
     /**
@@ -25,23 +29,44 @@ public class WimpPlayer extends Player {
      * 
      * @param name the name of the Player being created
      */
-    public WimpPlayer(String name) {
-        super(name);
+    public WimpPlayer(String name, BulldogGameModel model) {
+        super(name, model);
     }
 
-    /**
-     * This method implements the WimpPlayer's logic for playing a turn.
-     * 
-     * @param dice the Dice object used for rolling
-     * @return int result of the turn score
-     */
+    // /**
+    //  * This method implements the WimpPlayer's logic for playing a turn.
+    //  * 
+    //  * @param dice the Dice object used for rolling
+    //  * @return int result of the turn score
+    //  */
+    // @Override
+    // public int play(Dice dice) {
+    //     int roll = dice.roll();
+    //     if (roll == 6) {
+    //         return 0; // Turn ends with no points
+    //     }
+    //     setScore(getScore() + roll); // Update the player's total score
+    //     return roll; // Return the roll as the turn score
+    // }
+
     @Override
-    public int play(Dice dice) {
-        int roll = dice.roll();
+    public List<Integer> implementRollingLogic(Dice dice) {
+
+        List<Integer> returnList = new ArrayList<>();
+        
+        int roll = roll(dice);
+        setTurnScore(getTurnScore() + roll);
+
         if (roll == 6) {
-            return 0; // Turn ends with no points
+            setTurnScore(0);
+            returnList.add(0);
+            return returnList;
         }
-        setScore(getScore() + roll); // Update the player's total score
-        return roll; // Return the roll as the turn score
+        
+        returnList.add(roll);
+        setScore(getScore() + getTurnScore());
+        return returnList;
     }
+
+
 }

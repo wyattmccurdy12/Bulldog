@@ -30,6 +30,7 @@ public class BulldogGameModel {
      * a six-sided dice, and initializes the game state.
      */
     public BulldogGameModel() {
+        players = new ArrayList<>();
         observers = new ArrayList<>(); // Initialize the observers list
     }
 

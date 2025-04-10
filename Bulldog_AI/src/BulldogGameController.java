@@ -103,27 +103,27 @@ public class BulldogGameController implements GameObserver {
 
         if (checkBoxes.get("WimpPlayer").isSelected()) {
             // players.add(new WimpPlayer());
-            model.addPlayer(new WimpPlayer());
+            model.addPlayer(new WimpPlayer(model));
             System.out.println("wimp has been added");
         }
         if (checkBoxes.get("RandomPlayer").isSelected()) {
             // players.add(new RandomPlayer());
-            model.addPlayer(new RandomPlayer());
+            model.addPlayer(new RandomPlayer(model));
             System.out.println("random has been added");
         }
         if (checkBoxes.get("FifteenPlayer").isSelected()) {
             // players.add(new FifteenPlayer());
-            model.addPlayer(new FifteenPlayer());
+            model.addPlayer(new FifteenPlayer(model));
             System.out.println("fifteen has been added");
         }
         if (checkBoxes.get("UniquePlayerGPT").isSelected()) {
             // players.add(new UniquePlayerGPT());
-            model.addPlayer(new UniquePlayerGPT());
+            model.addPlayer(new UniquePlayerGPT(model));
             System.out.println("uniquegpt has been added");
         }
         if (checkBoxes.get("UniquePlayerHuman").isSelected()) {
             // players.add(new UniquePlayerHuman());
-            model.addPlayer(new UniquePlayerHuman());
+            model.addPlayer(new UniquePlayerHuman(model));
             System.out.println("unieuqhuman has been added");
         }
 

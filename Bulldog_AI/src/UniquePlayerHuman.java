@@ -1,5 +1,8 @@
 package src;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * UniquePlayerHuman class: A unique player that will simply roll four times.
  * 
@@ -16,8 +19,8 @@ public class UniquePlayerHuman extends Player {
     /**
      * Constructor: Creates a default UniquePlayerHuman.
      */
-    public UniquePlayerHuman() {
-        this("UniqueHuman");
+    public UniquePlayerHuman(BulldogGameModel model) {
+        this("UniqueHuman", model);
     }
 
     /**
@@ -25,8 +28,8 @@ public class UniquePlayerHuman extends Player {
      * 
      * @param name The name of the player being created.
      */
-    public UniquePlayerHuman(String name) {
-        super(name);
+    public UniquePlayerHuman(String name, BulldogGameModel model) {
+        super(name, model);
     }
 
     /**
@@ -35,19 +38,40 @@ public class UniquePlayerHuman extends Player {
      * @param dice The dice object used for rolling
      * @return int The score for the turn
      */
+    // @Override
+    // public int play(Dice dice) {
+    //     int turnScore = 0;
+    //     int rolls = 0;
+    //     while (rolls < 4) { // Roll exactly four times
+    //         int roll = dice.roll();
+    //         if (roll == 6) {
+    //             return 0; // Turn ends with no points
+    //         }
+    //         turnScore += roll;
+    //         rolls++;
+    //     }
+    //     setScore(getScore() + turnScore); // Update the player's total score
+    //     return turnScore;
+    // }
+
     @Override
-    public int play(Dice dice) {
-        int turnScore = 0;
+    public List<Integer> implementRollingLogic(Dice dice) {
         int rolls = 0;
-        while (rolls < 4) { // Roll exactly four times
-            int roll = dice.roll();
+        List<Integer> returnList = new ArrayList<>();
+        while (rolls < 4) {
+            
+            int roll = roll(dice);
+            setTurnScore(getTurnScore() + roll);
+
             if (roll == 6) {
-                return 0; // Turn ends with no points
+                setTurnScore(0);
+                returnList.add(0);
+                return returnList;
             }
-            turnScore += roll;
-            rolls++;
+            returnList.add(roll);
         }
-        setScore(getScore() + turnScore); // Update the player's total score
-        return turnScore;
+        setScore(getScore() + getTurnScore());
+        return returnList;
     }
+
 }
