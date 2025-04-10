@@ -24,6 +24,7 @@ public class BulldogGameModel {
     private String currentPlayerName;
     private List<Integer> currentPlayerRolls = new ArrayList<>();
     private int currentPlayerScore = 0;
+    private int currentPlayerTurnScore = 0;
 
     /**
      * Constructs a new BulldogGameModel with an empty list of players,
@@ -119,12 +120,49 @@ public class BulldogGameModel {
      * @param rolls The list of roll values for the current player.
      * @param score The current score of the player.
      */
-    public void updateCurrentPlayer(String name, List<Integer> rolls, int score) {
+    public void updateCurrentPlayer(String name, List<Integer> rolls, int score, int turn_score) {
         this.currentPlayerName = name;
         this.currentPlayerRolls = new ArrayList<>(rolls); // Create a copy of the rolls list
         this.currentPlayerScore = score;
+        this.currentPlayerTurnScore = turn_score;
 
         notifyObservers();
 
+    }
+
+    /**
+     * Returns the name of the current player.
+     * 
+     * @return The current player's name.
+     */
+    public String getCurrentPlayerName() {
+        return currentPlayerName;
+    }
+
+    /**
+     * Returns the list of rolls for the current player.
+     * 
+     * @return A list of integers representing the current player's rolls.
+     */
+    public List<Integer> getCurrentPlayerRolls() {
+        return new ArrayList<>(currentPlayerRolls); // Return a copy to avoid external modification
+    }
+
+    /**
+     * Returns the current player's turn score.
+     * 
+     * @return The current player's turn score.
+     */
+    public int getCurrentPlayerTurnScore() {
+        return currentPlayerTurnScore;
+    }
+
+    /**
+     * Returns the current player's total score.
+     * 
+     * @return The current player's total score.
+     */
+    public int getCurrentPlayerScore() {
+        return currentPlayerScore;
     }
 }

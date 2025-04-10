@@ -146,15 +146,15 @@ public abstract class Player {
         setTurnScore(0);
         List<Integer> my_rolling_results = implementRollingLogic(dice);
 
-        int my_rolling_result = 0;
-        for (int result : my_rolling_results) {
-            my_rolling_result = my_rolling_result + result;
-        }
+        // int my_rolling_result = 0;
+        // for (int result : my_rolling_results) {
+        //     my_rolling_result = my_rolling_result + result;
+        // }
 
         // Update current player information for the model
-        model.updateCurrentPlayer(name, my_rolling_results, my_rolling_result);
+        model.updateCurrentPlayer(name, my_rolling_results, score, turn_score);
 
-        return my_rolling_result;
+        return turn_score;
     }
 
     public abstract List<Integer> implementRollingLogic(Dice dice);

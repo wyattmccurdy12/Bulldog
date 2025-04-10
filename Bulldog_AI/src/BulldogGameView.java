@@ -7,7 +7,7 @@ import java.awt.*;
 import java.util.Map;
 
 import java.util.HashMap;
-import java.awt.event.ActionListener;
+import java.util.List;
 
 public class BulldogGameView extends JFrame {
     private JTextArea textArea;
@@ -178,6 +178,21 @@ public class BulldogGameView extends JFrame {
      */
     public void enableEndTurnButton(boolean enable) {
         endTurnButton.setEnabled(enable);
+    }
+
+    /**
+     * Updates the text area with the current player's information.
+     * 
+     * @param playerName The name of the current player.
+     * @param rolls      The list of roll values for the current player.
+     * @param turnScore  The current player's turn score.
+     * @param totalScore The current player's total score.
+     */
+    public void updateTextArea(String playerName, List<Integer> rolls, int turnScore, int totalScore) {
+        textArea.append("\nCurrent Player: " + playerName);
+        textArea.append("\nRolls: " + rolls);
+        textArea.append("\nTurn Score: " + turnScore);
+        textArea.append("\nTotal Score: " + totalScore + "\n");
     }
 
     /**

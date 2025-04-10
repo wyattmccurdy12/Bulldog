@@ -30,6 +30,5 @@ public class BulldogGame {
 
         view.registerController(controller);
         model.addObserver(controller); // Add the controller as an observer to the model
-        
     }
 }

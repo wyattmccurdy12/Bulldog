@@ -78,7 +78,11 @@ public class BulldogGameController implements GameObserver {
 
         view.updateScoreboard(getPlayerScores()); // Update the scoreboard in the view
 
-
+        view.updateTextArea(
+            model.getCurrentPlayerName(),
+            model.getCurrentPlayerRolls(),
+            model.getCurrentPlayerTurnScore(),
+            model.getCurrentPlayerScore());
     }
 
     /**
