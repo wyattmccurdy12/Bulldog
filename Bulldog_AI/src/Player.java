@@ -143,6 +143,7 @@ public abstract class Player {
      * @return int result of the play
      */
     public int play(Dice dice) {
+        setTurnScore(0);
         List<Integer> my_rolling_results = implementRollingLogic(dice);
 
         int my_rolling_result = 0;
