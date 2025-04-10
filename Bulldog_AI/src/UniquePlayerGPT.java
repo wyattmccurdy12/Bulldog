@@ -58,7 +58,7 @@ public class UniquePlayerGPT extends Player {
     // }
 
     @Override
-    public List<Integer> implementRollingLogic(Dice dice) {
+    public List<Integer> implementRollingLogic(RandomDice dice) {
         int my_roll = 0;
         List<Integer> returnList = new ArrayList<>();
         while (getTurnScore() < 10 && my_roll < 4) {

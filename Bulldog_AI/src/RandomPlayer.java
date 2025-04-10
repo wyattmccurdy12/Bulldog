@@ -55,7 +55,7 @@ public class RandomPlayer extends Player {
 
 
     @Override
-    public List<Integer> implementRollingLogic(Dice dice) {
+    public List<Integer> implementRollingLogic(RandomDice dice) {
         List<Integer> returnList = new ArrayList<>();
         while (Math.random() < 0.5) {
             

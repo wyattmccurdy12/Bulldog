@@ -55,7 +55,7 @@ public class UniquePlayerHuman extends Player {
     // }
 
     @Override
-    public List<Integer> implementRollingLogic(Dice dice) {
+    public List<Integer> implementRollingLogic(RandomDice dice) {
         int rolls = 0;
         List<Integer> returnList = new ArrayList<>();
         while (rolls < 4) {

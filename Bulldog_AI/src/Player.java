@@ -157,9 +157,9 @@ public abstract class Player {
         return turn_score;
     }
 
-    public abstract List<Integer> implementRollingLogic(Dice dice);
+    public abstract List<Integer> implementRollingLogic(RandomDice dice);
 
-    protected int roll(Dice dice) {
+    protected int roll(RandomDice dice) {
         int my_roll = dice.roll();
         
         notifyObservers();

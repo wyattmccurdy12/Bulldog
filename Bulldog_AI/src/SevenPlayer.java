@@ -35,7 +35,7 @@ public class SevenPlayer extends Player {
      * @return a list of integers representing the rolls during the turn
      */
     @Override
-    public List<Integer> implementRollingLogic(Dice dice) {
+    public List<Integer> implementRollingLogic(RandomDice dice) {
         List<Integer> returnList = new ArrayList<>();
         while (getTurnScore() < 7) {
             int roll = roll(dice);
