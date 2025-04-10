@@ -1,5 +1,8 @@
 package src;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * UniquePlayerGPT class: A unique player that uses a unique strategy to maximize the score.
  * 
@@ -16,8 +19,8 @@ public class UniquePlayerGPT extends Player {
     /**
      * Constructor: Creates a default UniquePlayerGPT.
      */
-    public UniquePlayerGPT() {
-        this("UniqueGPT");
+    public UniquePlayerGPT(BulldogGameModel model) {
+        super("UniqueGPT", model);
     }
 
     /**
@@ -25,26 +28,53 @@ public class UniquePlayerGPT extends Player {
      * 
      * @param name The name of the player being created.
      */
-    public UniquePlayerGPT(String name) {
-        super(name);
+    public UniquePlayerGPT(String name, BulldogGameModel model) {
+        super(name, model);
     }
 
     /**
-     * This method will decide whether or not to continue rolling based on a unique strategy.
+     * This method implements the unique logic for the player's turn using the Dice object.
      * 
-     * @param roll the value of the roll
-     * @return boolean result of the roll evaluation
+     * @param dice the Dice object used for rolling
+     * @return int the updated score after the turn
      */
-    public boolean evaulate_roll(int roll) {
-        // update score
-        setTurnScore(getTurnScore() + roll);
+    // @Override
+    // public int play(Dice dice) {
+    //     int turnScore = 0;
+    //     while (true) {
+    //         int roll = dice.roll();
+    //         if (roll == 6) {
+    //             return 0; // Turn ends with no points
+    //         }
+    //         turnScore += roll;
 
-        if (roll == 6) {
-            setTurnScore(0);
-            return false;
-        } else if (getTurnScore() >= 10 || roll >= 4) {
-            return false;
+    //         // UniquePlayerGPT logic: Stop rolling if turn score >= 10 or roll >= 4
+    //         if (turnScore >= 10 || roll >= 4) {
+    //             break;
+    //         }
+    //     }
+    //     setScore(getScore() + turnScore); // Update the player's total score
+    //     return turnScore;
+    // }
+
+    @Override
+    public List<Integer> implementRollingLogic(Dice dice) {
+        int my_roll = 0;
+        List<Integer> returnList = new ArrayList<>();
+        while (getTurnScore() < 10 && my_roll < 4) {
+            
+            int roll = roll(dice);
+            setTurnScore(getTurnScore() + roll);
+
+            if (roll == 6) {
+                setTurnScore(0);
+                returnList.add(0);
+                return returnList;
+            }
+            returnList.add(roll);
         }
-        return true;
+        setScore(getScore() + getTurnScore());
+        return returnList;
     }
+
 }

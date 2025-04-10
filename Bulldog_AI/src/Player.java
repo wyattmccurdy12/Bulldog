@@ -1,5 +1,8 @@
 package src;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Abstract Player class that holds generic information about a player of the game Bulldog.
  * 
@@ -21,6 +24,12 @@ public abstract class Player {
     private int score;      // The score earned by this Player during the game
 
     private int turn_score; // The score earned by the player during the turn
+
+    BulldogGameModel model;
+
+    private List<GameObserver> observers = new ArrayList<>(); // List of observers
+
+    private List<Integer> currentTurnRolls = new ArrayList<>();
     
     /**
      * Constructor: Player
@@ -29,9 +38,10 @@ public abstract class Player {
      * 
      * @param name the name of the Player being created
      */
-    public Player(String name) {
+    public Player(String name, BulldogGameModel model) {
         this.name = name;
         this.score = 0;
+        this.model = model;
     }
     
     /**
@@ -76,6 +86,7 @@ public abstract class Player {
      */
     public void setScore(int score) {
         this.score = score;
+        notifyObservers(); // Notify observers when the score changes
     }
 
     /**
@@ -87,16 +98,73 @@ public abstract class Player {
      */
     public void setTurnScore(int score) {
         this.turn_score = score;
+        notifyObservers(); // Notify observers when the turn score changes
     }
 
     /**
-     * Method: evaulate_roll
+     * Method: addObserver
      * 
-     * <p>Purpose: abstract method to evaluate the roll</p>
+     * <p>Purpose: add an observer to the list</p>
      * 
-     * @param roll the value of the roll
-     * @return boolean result of the roll evaluation
+     * @param observer the observer to be added
      */
-    public abstract boolean evaulate_roll(int roll);
+    public void addObserver(GameObserver observer) {
+        observers.add(observer);
+    }
+
+    /**
+     * Method: removeObserver
+     * 
+     * <p>Purpose: remove an observer from the list</p>
+     * 
+     * @param observer the observer to be removed
+     */
+    public void removeObserver(GameObserver observer) {
+        observers.remove(observer);
+    }
+
+    /**
+     * Method: notifyObservers
+     * 
+     * <p>Purpose: notify all observers of a state change</p>
+     */
+    protected void notifyObservers() {
+        for (GameObserver observer : observers) {
+            observer.update();
+        }
+    }
+
+    /**
+     * Method: play
+     * 
+     * <p>Purpose: abstract method to play the game</p>
+     * 
+     * @param dice the Dice object used in the game
+     * @return int result of the play
+     */
+    public int play(Dice dice) {
+        setTurnScore(0);
+        List<Integer> my_rolling_results = implementRollingLogic(dice);
+
+        // int my_rolling_result = 0;
+        // for (int result : my_rolling_results) {
+        //     my_rolling_result = my_rolling_result + result;
+        // }
+
+        // Update current player information for the model
+        model.updateCurrentPlayer(name, my_rolling_results, score, turn_score);
+
+        return turn_score;
+    }
+
+    public abstract List<Integer> implementRollingLogic(Dice dice);
+
+    protected int roll(Dice dice) {
+        int my_roll = dice.roll();
+        
+        notifyObservers();
+
+        return my_roll;
+    }
 
 }

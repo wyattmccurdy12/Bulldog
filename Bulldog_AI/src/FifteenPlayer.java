@@ -1,5 +1,8 @@
 package src;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * FifteenPlayer class extends the Player class.
  * A FifteenPlayer always rolls until it gets to fifteen points.
@@ -19,8 +22,8 @@ public class FifteenPlayer extends Player {
      * Default constructor for FifteenPlayer.
      * Creates a FifteenPlayer with the default name "Fifteen".
      */
-    public FifteenPlayer() {
-        this("Fifteen");
+    public FifteenPlayer(BulldogGameModel model) {
+        super("Fifteen", model);
     }
 
     /**
@@ -29,27 +32,52 @@ public class FifteenPlayer extends Player {
      * 
      * @param name the name of the Player being created
      */
-    public FifteenPlayer(String name) {
-        super(name);
+    public FifteenPlayer(String name, BulldogGameModel model) {
+        super(name, model);
+        // this.model = model;
     }
 
-    /**
-     * Evaluates the roll and decides whether to continue rolling.
-     * 
-     * @param roll the roll provided by the game
-     * @return true if the player should continue rolling, false otherwise
-     */
-    public boolean evaulate_roll(int roll) {
-        // update score
-        setTurnScore(getTurnScore() + roll);
+    // /**
+    //  * Implements the turn logic for FifteenPlayer.
+    //  * 
+    //  * @param dice the Dice object used for rolling
+    //  * @return the turn score after the rolls
+    //  */
+    // @Override
+    // public int play(Dice dice) {
+    //     while (getTurnScore() < 15) {
+    //         int roll = roll(dice);
+    //         setTurnScore(getTurnScore() + roll);
 
-        if (roll == 6) {
-            setTurnScore(0);
-            return false;
-        } else if (getTurnScore() >= 15) {
-            setScore(getScore() + getTurnScore()); // Update overall score
-            return false;
+    //         if (roll == 6) {
+    //             setTurnScore(0);
+    //             return 0; // Turn ends with no points
+    //         }
+    //     }
+
+    //     setScore(getScore() + getTurnScore()); // Add turn score to total score
+    //     return getTurnScore(); // Return the turn score
+    // }
+
+    @Override
+    public List<Integer> implementRollingLogic(Dice dice) {
+        List<Integer> returnList = new ArrayList<>();
+        while (getTurnScore() < 15) {
+            
+            int roll = roll(dice);
+            setTurnScore(getTurnScore() + roll);
+
+            if (roll == 6) {
+                setTurnScore(0);
+                returnList.add(0);
+                return returnList;
+            }
+            returnList.add(roll);
+
+
         }
-        return true;
+        setScore(getScore() + getTurnScore());
+        return returnList;
+
     }
 }

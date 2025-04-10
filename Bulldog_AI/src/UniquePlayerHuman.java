@@ -1,5 +1,8 @@
 package src;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * UniquePlayerHuman class: A unique player that will simply roll four times.
  * 
@@ -12,13 +15,12 @@ package src;
  * Written with help from Github Copilot (GPT-4o)
  */
 public class UniquePlayerHuman extends Player {
-    private int num_rolls = 0;
 
     /**
      * Constructor: Creates a default UniquePlayerHuman.
      */
-    public UniquePlayerHuman() {
-        this("UniqueHuman");
+    public UniquePlayerHuman(BulldogGameModel model) {
+        this("UniqueHuman", model);
     }
 
     /**
@@ -26,28 +28,50 @@ public class UniquePlayerHuman extends Player {
      * 
      * @param name The name of the player being created.
      */
-    public UniquePlayerHuman(String name) {
-        super(name);
+    public UniquePlayerHuman(String name, BulldogGameModel model) {
+        super(name, model);
     }
 
     /**
-     * This method will decide whether or not to continue rolling based on a unique strategy (roll four times every turn).
+     * This method will take a turn for the UniquePlayerHuman.
      * 
-     * @param roll the value of the roll
-     * @return boolean result of the roll evaluation
+     * @param dice The dice object used for rolling
+     * @return int The score for the turn
      */
-    public boolean evaulate_roll(int roll) {
-        num_rolls = num_rolls + 1;
-        // update score
-        setTurnScore(getTurnScore() + roll);
+    // @Override
+    // public int play(Dice dice) {
+    //     int turnScore = 0;
+    //     int rolls = 0;
+    //     while (rolls < 4) { // Roll exactly four times
+    //         int roll = dice.roll();
+    //         if (roll == 6) {
+    //             return 0; // Turn ends with no points
+    //         }
+    //         turnScore += roll;
+    //         rolls++;
+    //     }
+    //     setScore(getScore() + turnScore); // Update the player's total score
+    //     return turnScore;
+    // }
 
-        if (roll == 6) {
-            setTurnScore(0);
-            return false;
+    @Override
+    public List<Integer> implementRollingLogic(Dice dice) {
+        int rolls = 0;
+        List<Integer> returnList = new ArrayList<>();
+        while (rolls < 4) {
+            
+            int roll = roll(dice);
+            setTurnScore(getTurnScore() + roll);
+
+            if (roll == 6) {
+                setTurnScore(0);
+                returnList.add(0);
+                return returnList;
+            }
+            returnList.add(roll);
         }
-        else if (num_rolls > 4) {
-            return false;
-        }
-        return true;
+        setScore(getScore() + getTurnScore());
+        return returnList;
     }
+
 }
