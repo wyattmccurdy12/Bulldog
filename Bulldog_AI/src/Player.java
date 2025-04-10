@@ -142,7 +142,7 @@ public abstract class Player {
      * @param dice the Dice object used in the game
      * @return int result of the play
      */
-    public int play(Dice dice) {
+    public int play(RandomDice dice) {
         setTurnScore(0);
         List<Integer> my_rolling_results = implementRollingLogic(dice);
 
