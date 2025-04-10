@@ -14,8 +14,7 @@ import java.util.Random;
  * 
  * Written with help from Github Copilot (GPT-4o)
  */
-public class Dice {
-    private int sides;
+public class Dice extends RandomDice {
     private Random random;
 
     /**
@@ -24,11 +23,8 @@ public class Dice {
      * @param sides The number of sides of the die (can be up to 20).
      */
     public Dice(int sides) {
-        if (sides < 1 || sides > 20) {
-            throw new IllegalArgumentException("Number of sides must be between 1 and 20.");
-        }
-        this.sides = sides;
-        this.random = new Random(42); // Seed the random number generator with 42
+        super(sides);
+        this.random = new Random();
     }
 
     /**
@@ -36,28 +32,8 @@ public class Dice {
      * 
      * @return A random integer between 1 and the number of sides.
      */
+    @Override
     public int roll() {
         return random.nextInt(sides) + 1;
-    }
-
-    /**
-     * Gets the number of sides of the die.
-     * 
-     * @return The number of sides.
-     */
-    public int getSides() {
-        return sides;
-    }
-
-    /**
-     * Sets the number of sides of the die.
-     * 
-     * @param sides The number of sides to set (must be between 1 and 20).
-     */
-    public void setSides(int sides) {
-        if (sides < 1 || sides > 20) {
-            throw new IllegalArgumentException("Number of sides must be between 1 and 20.");
-        }
-        this.sides = sides;
     }
 }
