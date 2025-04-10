@@ -4,15 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The BulldogGameModel is responsible for storing and managing game data. 
- * The data stored here is data for players. When players change state, 
- * then the model will update observers. 
+ * The BulldogGameModel is responsible for storing and managing game data.
+ * It maintains the state of the game and notifies observers of any changes.
  * 
  * <p>Wyatt McCurdy</p>
  * <p>Login ID: wyatt.mccurdy@maine.edu</p>
  * <p>COS 420/520, Spring 2025</p>
  * 
- * Written with help from Github Copilot (GPT-4o)
+ * <p>Written with help from Github Copilot (GPT-4o)</p>
  */
 public class BulldogGameModel {
     private List<Player> players;
@@ -102,8 +101,6 @@ public class BulldogGameModel {
         }
     }
 
-
-
     /**
      * Returns the winning score for the game.
      * 
@@ -119,6 +116,7 @@ public class BulldogGameModel {
      * @param name  The name of the current player.
      * @param rolls The list of roll values for the current player.
      * @param score The current score of the player.
+     * @param turn_score The current turn score of the player.
      */
     public void updateCurrentPlayer(String name, List<Integer> rolls, int score, int turn_score) {
         this.currentPlayerName = name;
@@ -127,7 +125,6 @@ public class BulldogGameModel {
         this.currentPlayerTurnScore = turn_score;
 
         notifyObservers();
-
     }
 
     /**

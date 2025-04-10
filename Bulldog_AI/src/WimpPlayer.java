@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * WimpPlayer class: extends Player class
+ * WimpPlayer class: extends Player class.
  * A WimpPlayer always rolls the die once.
- * 
- * <p>See Kettering University, CS-101, Prog 6</p>
  * 
  * <p>Wyatt McCurdy</p>
  * <p>Login ID: wyatt.mccurdy@maine.edu</p>
@@ -32,22 +30,6 @@ public class WimpPlayer extends Player {
     public WimpPlayer(String name, BulldogGameModel model) {
         super(name, model);
     }
-
-    // /**
-    //  * This method implements the WimpPlayer's logic for playing a turn.
-    //  * 
-    //  * @param dice the Dice object used for rolling
-    //  * @return int result of the turn score
-    //  */
-    // @Override
-    // public int play(Dice dice) {
-    //     int roll = dice.roll();
-    //     if (roll == 6) {
-    //         return 0; // Turn ends with no points
-    //     }
-    //     setScore(getScore() + roll); // Update the player's total score
-    //     return roll; // Return the roll as the turn score
-    // }
 
     @Override
     public List<Integer> implementRollingLogic(RandomDice dice) {

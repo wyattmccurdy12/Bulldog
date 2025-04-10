@@ -3,6 +3,12 @@ package src;
 /**
  * RandomDice class: Abstract superclass for dice with a specified number of sides.
  * Subclasses must implement the roll() method.
+ * 
+ * <p>Wyatt McCurdy</p>
+ * <p>Login ID: wyatt.mccurdy@maine.edu</p>
+ * <p>COS 420/520, Spring 2025</p>
+ * 
+ * <p>Written with help from Github Copilot (GPT-4o)</p>
  */
 public abstract class RandomDice {
     protected int sides;

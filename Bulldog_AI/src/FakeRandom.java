@@ -5,6 +5,12 @@ import java.util.Iterator;
 
 /**
  * FakeRandom class: A subclass of RandomDice that uses a predefined list of integers for rolling.
+ * 
+ * <p>Wyatt McCurdy</p>
+ * <p>Login ID: wyatt.mccurdy@maine.edu</p>
+ * <p>COS 420/520, Spring 2025</p>
+ * 
+ * <p>Written with help from Github Copilot (GPT-4o)</p>
  */
 public class FakeRandom extends RandomDice {
     private Iterator<Integer> iterator;

@@ -6,16 +6,11 @@ import java.util.List;
 /**
  * Abstract Player class that holds generic information about a player of the game Bulldog.
  * 
- * <p>See Kettering University, CS-101, Prog 6</p>
- * 
- * 
  * <p>Wyatt McCurdy</p>
  * <p>Login ID: wyatt.mccurdy@maine.edu</p>
  * <p>COS 420/520, Spring 2025</p>
  * 
- * 
- * Written with help from Github Copilot (GPT-4o)
- * 
+ * <p>Written with help from Github Copilot (GPT-4o)</p>
  */
 public abstract class Player {
     

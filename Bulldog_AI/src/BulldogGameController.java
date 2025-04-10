@@ -9,13 +9,12 @@ import javax.swing.JCheckBox;
 /**
  * The BulldogGameController class is responsible for managing the flow of the Bulldog game.
  * It acts as the intermediary between the model, view, and referee.
- * The controller updates the view. 
  * 
  * <p>Wyatt McCurdy</p>
  * <p>Login ID: wyatt.mccurdy@maine.edu</p>
  * <p>COS 420/520, Spring 2025</p>
  * 
- * Written with help from Github Copilot (GPT-4o)
+ * <p>Written with help from Github Copilot (GPT-4o)</p>
  */
 public class BulldogGameController implements GameObserver {
 
