@@ -124,11 +124,6 @@ public class BulldogGameController implements GameObserver {
             model.addPlayer(new UniquePlayerGPT(model));
             System.out.println("uniquegpt has been added");
         }
-        if (checkBoxes.get("UniquePlayerHuman").isSelected()) {
-            // players.add(new UniquePlayerHuman());
-            model.addPlayer(new UniquePlayerHuman(model));
-            System.out.println("unieuqhuman has been added");
-        }
 
         // model.initializePlayers(players); // Load the selected players into the model/ JUST USE ADD PLAYER
         System.out.println("players have been initd");
