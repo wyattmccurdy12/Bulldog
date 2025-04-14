@@ -53,4 +53,9 @@ public class RandomPlayer extends Player {
         setScore(getScore() + getTurnScore());
         return returnList;
     }
+
+    @Override
+    public boolean checkHuman() {
+        return false;
+    }
 }

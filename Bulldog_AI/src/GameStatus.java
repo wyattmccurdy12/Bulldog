@@ -13,6 +13,7 @@ package src;
 public class GameStatus {
     private boolean gameWon;
     private int highScore;
+    private boolean isHumanTurn;
 
     /**
      * Constructor: Initializes the game state with default values.
@@ -59,5 +60,23 @@ public class GameStatus {
         if (score > this.highScore) {
             this.highScore = score;
         }
+    }
+
+    /**
+     * Checks if it's a human player's turn.
+     * 
+     * @return True if it's a human player's turn, false otherwise.
+     */
+    public boolean isHumanTurn() {
+        return isHumanTurn;
+    }
+
+    /**
+     * Sets whether it's a human player's turn.
+     * 
+     * @param isHumanTurn True if it's a human player's turn, false otherwise.
+     */
+    public void setHumanTurn(boolean isHumanTurn) {
+        this.isHumanTurn = isHumanTurn;
     }
 }

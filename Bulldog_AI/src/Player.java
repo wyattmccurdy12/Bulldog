@@ -154,6 +154,8 @@ public abstract class Player {
 
     public abstract List<Integer> implementRollingLogic(RandomDice dice);
 
+    public abstract boolean checkHuman();
+
     protected int roll(RandomDice dice) {
         int my_roll = dice.roll();
         
@@ -161,5 +163,4 @@ public abstract class Player {
 
         return my_roll;
     }
-
 }

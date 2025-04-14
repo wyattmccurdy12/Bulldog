@@ -57,4 +57,9 @@ public class SevenPlayer extends Player {
         setScore(getScore() + getTurnScore());
         return returnList;
     }
+
+    @Override
+    public boolean checkHuman() {
+        return false;
+    }
 }

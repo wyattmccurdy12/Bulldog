@@ -75,4 +75,9 @@ public class UniquePlayerGPT extends Player {
         return returnList;
     }
 
+    @Override
+    public boolean checkHuman() {
+        return false;
+    }
+
 }

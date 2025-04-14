@@ -55,4 +55,9 @@ public class FifteenPlayer extends Player {
         return returnList;
 
     }
+
+    @Override
+    public boolean checkHuman() {
+        return false;
+    }
 }
