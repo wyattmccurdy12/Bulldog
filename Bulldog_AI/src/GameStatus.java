@@ -1,7 +1,7 @@
 package src;
 
 /**
- * GameState class: Encapsulates the state of the game.
+ * GameStatus class: Encapsulates the state of the game.
  * Tracks whether the game is won and the current high score.
  * 
  * <p>Wyatt McCurdy</p>
@@ -10,7 +10,7 @@ package src;
  * 
  * <p>Written with help from Github Copilot (GPT-4o)</p>
  */
-public class GameState {
+public class GameStatus {
     private boolean gameWon;
     private int highScore;
 
@@ -18,7 +18,7 @@ public class GameState {
      * Constructor: Initializes the game state with default values.
      * The game is not won, and the high score is set to 0.
      */
-    public GameState() {
+    public GameStatus() {
         this.gameWon = false;
         this.highScore = 0;
     }
